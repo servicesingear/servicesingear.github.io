@@ -1,0 +1,134 @@
+/* Overall container styling */
+.career-header-section {
+    padding: 10px 15px; /* Smaller padding for compact spacing */
+    background-color: lightgrey;
+    text-align: left;
+    background-size: cover;     /* Scales the image so it covers the entire section */
+    background-position: center; /* Centers the image within the container */
+    background-repeat: no-repeat;
+  }
+
+  .career-content-section {
+    padding: 3rem 1rem;
+    background: #f9f9f9;
+  }
+/* Centered Header */
+.section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .section-header h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .section-header p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  /* Styling for each line with smaller font sizes */
+  .line-one {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-bottom: 0.7rem;
+  }
+  
+  .line-two {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0rem;
+  }
+  
+  .line-three {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Responsive adjustments for tablet and mobile */
+  @media (max-width: 768px) {
+    .line-one {
+      font-size: 0.7rem;
+    }
+    .line-two {
+      font-size: 1.2rem;
+    }
+    .line-three {
+      font-size: 0.7rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .line-one {
+      font-size: 0.6rem;
+    }
+    .line-two {
+      font-size: 1rem;
+    }
+    .line-three {
+      font-size: 0.6rem;
+    }
+  }
+  /* Search Bar */
+.search-bar {
+    max-width: 500px;
+    margin: 0 auto 2rem auto;
+  }
+  
+  /* Styling for the input group icon */
+  .search-icon {
+    background: transparent;
+    border-right: none;
+    color: #666;
+    font-size: 1.2rem;
+  }
+  
+  .search-bar .form-control {
+    border-left: none;
+  }
+ 
+  
+ 
+  
+  /* Animation classes */
+  .animated {
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+  
+  .fadeInDown {
+    animation-name: fadeInDown;
+    animation-duration: 1s;
+  }
+  
+  .fadeInUp {
+    animation-name: fadeInUp;
+    animation-duration: 1s;
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Job Card Styles */
+  /* HorizontalJobCard.css */
