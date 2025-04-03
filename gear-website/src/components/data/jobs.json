@@ -1,0 +1,83 @@
+[
+    {
+      "id": 1,
+      "companyLogo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZx21d3SCNIDzRkmgHChXuz3OVb9BxaujIUg&s",
+          "industry": "HR",
+          "jobTitle": "HR Manager",
+          "salary": "Rs.60,000 - Rs.80,000",
+          "location": "San Francisco, CA",
+          "workModel": "On-Site",
+          "jobType": "Full Time"
+    },
+    {
+      "id": 2,
+      "companyLogo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZx21d3SCNIDzRkmgHChXuz3OVb9BxaujIUg&s",
+          "industry": "Robotics",
+          "jobTitle": "HR Manager",
+          "salary": "Rs.60,000 - Rs.80,000",
+          "location": "San Francisco, CA",
+          "workModel": "On-Site",
+          "jobType": "Full Time"
+    },
+    {
+        "id": 3,
+        "companyLogo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZx21d3SCNIDzRkmgHChXuz3OVb9BxaujIUg&s",
+        "industry": "Full stack",
+        "jobTitle": "HR Manager",
+        "salary": "Rs.60,000 - Rs.80,000",
+        "location": "San Francisco, CA",
+        "workModel": "On-Site",
+        "jobType": "Full Time"
+      },
+      {
+        "id": 4,
+        "companyLogo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZx21d3SCNIDzRkmgHChXuz3OVb9BxaujIUg&s",
+          "industry": "HR",
+          "jobTitle": "HR Manager",
+          "salary": "Rs.60,000 - Rs.80,000",
+          "location": "San Francisco, CA",
+          "workModel": "On-Site",
+          "jobType": "Full Time"
+      },    {
+        "id": 1,
+        "companyLogo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZx21d3SCNIDzRkmgHChXuz3OVb9BxaujIUg&s",
+          "industry": "HR",
+          "jobTitle": "HR Manager",
+          "salary": "Rs.60,000 - Rs.80,000",
+          "location": "San Francisco, CA",
+          "workModel": "On-Site",
+          "jobType": "Full Time"
+      },
+      {
+        "id": 2,
+        "companyLogo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZx21d3SCNIDzRkmgHChXuz3OVb9BxaujIUg&s",
+          "industry": "HR",
+          "jobTitle": "HR Manager",
+          "salary": "Rs.60,000 - Rs.80,000",
+          "location": "lucknow",
+          "workModel": "On-Site",
+          "jobType": "Full Time"
+      },
+      {
+          "id": 3,
+          "companyLogo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZx21d3SCNIDzRkmgHChXuz3OVb9BxaujIUg&s",
+          "industry": "HR",
+          "jobTitle": "HR Manager",
+          "salary": "Rs.60,000 - Rs.80,000",
+          "location": "hyderabad",
+          "workModel": "On-Site",
+          "jobType": "Full Time"
+        },
+        {
+          "id": 4,
+          "companyLogo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZx21d3SCNIDzRkmgHChXuz3OVb9BxaujIUg&s",
+          "industry": "HR",
+          "jobTitle": "HR Manager",
+          "salary": "Rs.60,000 - Rs.80,000",
+          "location": "India",
+          "workModel": "On-Site",
+          "jobType": "Full Time"
+        }
+
+  ]
+  
