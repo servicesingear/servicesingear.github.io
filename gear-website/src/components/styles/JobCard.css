@@ -1,8 +1,8 @@
 /* Container Style */
 .job-card {
-  background-color: #e6f4ea; /* Light green background */
+  background-color: black ;/* Light green background */
   color: #2d6a4f; /* Dark green text */
-  border: 2px solid #95d5b2; /* Soft green border */
+  /* Soft green border */
   border-radius: 8px;
   
   padding: 20px;
@@ -11,9 +11,9 @@
 
 /* Left Section - Image */
 .job-image img {
-  width: 100px; /* Adjust size as needed */
+  width: 80px; /* Adjust size as needed */
   height: auto;
-  border: 2px solid #95d5b2; /* Soft green border around the image */
+ /* Soft green border around the image */
   border-radius: 8px;
   margin-right: 20px;
 }
@@ -61,15 +61,14 @@
 }
 
 .btn-primary{
-  background-color: #52b788; /* Medium green button */
-  color: white;
-  
+  background-color: rgb(53, 121, 47); /* Medium green button */
+  color: black;
   border: none;
-  padding: 5px 10px;
+  padding: 5px 10px;       
   border-radius: 5px;
   cursor: pointer;
   margin-top: 50px;
-  margin-left: -30px;
+  margin-right: -15px;
   font-size: 13px;
 }
 .job-salary{
@@ -78,14 +77,29 @@
 }
 
 .btn-primary:hover {
-  background-color: #40916c; /* Darker green hover effect */
+  background-color: #52b788; 
+  /* Darker green hover effect */
+}
+
+
+@media (max-width: 1200px) {
+  .job-image img {
+    width: 60px; /* Adjust size as needed */
+    height: auto;
+     /* Soft green border around the image */
+    border-radius: 8px;
+    margin-right: 20px;
+  }
+ 
+ 
+ 
 }
 
 @media (max-width: 796px) {
   .job-image img {
-    width: 70px; /* Adjust size as needed */
+    width: 60px; /* Adjust size as needed */
     height: auto;
-    border: 2px solid #95d5b2; /* Soft green border around the image */
+     /* Soft green border around the image */
     border-radius: 8px;
     margin-right: 20px;
   }
@@ -99,7 +113,6 @@
   .job-image img {
     width: 50px; /* Adjust size as needed */
     height: auto;
-    border: 2px solid #95d5b2; /* Soft green border around the image */
     border-radius: 8px;
     margin-right: 20px;
   }

@@ -25,12 +25,12 @@ const JobCard = ({ job }) => {
             {job.location}
           </span>
         </p>
-        <p className="job-salary">{job.salary}</p>
+        <p className="job-salary">{job.salary} /per month</p>
       </div>
 
       {/* Right Section - Job Type and Apply Button */}
       <div className="job-action d-flex flex-column justify-content-between">
-        <div><p className="job-type">{job.jobType}</p></div>
+        <div><p className="job-type">{job.jobType} </p></div>
         <div><button
           className="btn-primary"
           onClick={() => window.open(googleFormURL, '_blank')}
