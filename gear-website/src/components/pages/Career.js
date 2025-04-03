@@ -57,7 +57,7 @@ const Career = () => {
         <div className="container my-4">
      
       <div className="row">
-        {jobsData.map((job) => (
+        {filteredJobs.map((job) => (
           <div key={job.id} className='col-12 col-md-7 col-lg-5' >
             <HorizontalJobCard job={job} googleFormURL={googleFormURL} />
           </div>

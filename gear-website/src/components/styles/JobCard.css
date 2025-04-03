@@ -81,8 +81,7 @@
   background-color: #40916c; /* Darker green hover effect */
 }
 
-/* Responsive Styling */
-@media (max-width: 1200px) {
+@media (max-width: 796px) {
   .job-image img {
     width: 70px; /* Adjust size as needed */
     height: auto;
@@ -92,6 +91,24 @@
   }
 
   
+ 
+ 
+}
+/* Responsive Styling */
+@media (max-width: 500px) {
+  .job-image img {
+    width: 50px; /* Adjust size as needed */
+    height: auto;
+    border: 2px solid #95d5b2; /* Soft green border around the image */
+    border-radius: 8px;
+    margin-right: 20px;
+  }
+
+  .btn-primary{
+   
+    margin-left: 0px;
+    font-size: 8px;
+  }
  
  
 }
