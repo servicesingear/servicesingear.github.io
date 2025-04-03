@@ -35,8 +35,8 @@ function Footer() {
         </div>
       </div>
       <div className="footer-paragraph">
-        <p>Empowering the future through innovation and technological excellence.</p>
-        <p>© 2025 Gear. All rights reserved.</p>
+        {/* <p>Empowering the future through innovation and technological excellence.</p> */}
+        <p>© 2025 GEAR. All rights reserved.</p>
       </div>
     </footer>
   );

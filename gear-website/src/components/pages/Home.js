@@ -82,7 +82,7 @@ function Home() {
     </video> */}
     <img src={banner} className="video-background" alt="Banner Image" />
 </div>
-            <div ref={aboutRef} className="container-fluid bg-dark text-success py-5" id='about'>
+            <div ref={aboutRef} className="container-fluid bg-dark text-success py-5 section-height" id='about'>
     <div className="container">
         <div className="row align-items-center">
             <div className="col-md-6">
@@ -94,7 +94,7 @@ function Home() {
                 <div className="why-choose-us-section p-4 rounded shadow">
                     <div className="content-container">
                         <h2 className="mb-3 text-success">Why Choose Us</h2>
-                        <p className="text-light">At Robotics Co., we are committed to pushing the boundaries of technology. Our expert team of engineers and innovators work tirelessly to bring you state-of-the-art robotic solutions that enhance efficiency, safety, and productivity. Here’s why you should choose us:</p>
+                        <p className="text-light">At GEAR PVT LTD (Green Energy AI Robotics), we are pioneering the future of automation with cutting-edge AI-driven robotics powered by sustainable energy. Our mission is to create intelligent, energy-efficient solutions that enhance productivity while reducing environmental impact. By integrating advanced artificial intelligence with green energy technologies, we help businesses optimize operations, lower costs, and contribute to a cleaner planet. With a commitment to innovation, reliability, and sustainability, GEAR PVT LTD is your trusted partner in building a smarter, greener future.</p>
                         {/* You can add a list or more content here */}
                     </div>
                 </div>
@@ -103,7 +103,7 @@ function Home() {
     </div>
 </div>
 <section ref={serviceRef} id='service'>
-        <div className="container-fluid service-section">
+        <div className="container-fluid service-section section-height">
             <div className="row">
                 {/* Left Column */}
                 <div className="col-md-4 left-column">
@@ -111,7 +111,7 @@ function Home() {
                         <p className="tagline">Innovating the Future</p>
                         <h2 className="heading">Our Robotics Services</h2>
                         <p className="description">
-                            At Robotics Co., we specialize in transforming industries with cutting-edge robotics solutions. From AI-powered systems to maintenance and consulting, our expertise is tailored to meet your unique needs.
+                        We specialize in transforming industries with cutting-edge Gear solutions. Using Green Robotics in maintenance and consulting, our expertise is tailored to meet your unique needs.
                         </p>
                     </div>
                 </div>
@@ -125,35 +125,35 @@ function Home() {
                                 <div className="icon">🔧</div>
                                 <div className="text">
                                     <h4>Technical Support</h4>
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                    <p>We provide reliable technical support to ensure seamless operation, optimal performance, and timely maintenance, helping you maximize efficiency and minimize downtime.</p>
                                 </div>
                             </div>
                             <div className="service-row">
                                 <div className="icon">🚀</div>
                                 <div className="text">
                                     <h4>Innovation</h4>
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                    <p>We continuously innovate to develop cutting-edge solutions that enhance efficiency, drive sustainability, and shape the future of automation.</p>
                                 </div>
                             </div>
                             <div className="service-row">
                                 <div className="icon">🔒</div>
                                 <div className="text">
                                     <h4>Security</h4>
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                    <p>We implement robust security measures to protect systems, ensure data integrity, and safeguard operations against potential threats.</p>
                                 </div>
                             </div>
                             <div className="service-row">
                                 <div className="icon">🛠️</div>
                                 <div className="text">
                                     <h4>Maintenance</h4>
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                    <p>We provide proactive maintenance services to enhance reliability, extend system lifespan, and prevent operational disruptions.</p>
                                 </div>
                             </div>
                             <div className="service-row">
                                 <div className="icon">💡</div>
                                 <div className="text">
                                     <h4>Consulting</h4>
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                    <p>We offer expert consulting services to help businesses optimize automation, integrate sustainable technologies, and drive innovation effectively.</p>
                                 </div>
                             </div>
                         </div>
@@ -163,15 +163,16 @@ function Home() {
             </div>
         </div>
     </section>
-            <div ref={productRef} className="container-fluid product-page green-black-theme" id='#product'>
-    {/* Centered Content */}
+            <div ref={productRef} className="container-fluid section-height green-black-theme product-page" id='#product'>
+    {/* Centered Content */}<div className=''>
     <div className="centered-content">
-        <p className="tagline">Our Robotics Products</p>
-        <h2 className="heading">Innovative Robotics Solutions</h2>
+        <p className="tagline">Our Gear Products</p>
+        <h2 className="heading">Innovative Gear Solutions</h2>
         <p className="description">
-            Explore our range of cutting-edge robotics products designed to revolutionize industries and automate your workflows.
+            Explore our range of cutting-edge Gear products designed to revolutionize industries and automate your workflows.
         </p>
     </div>
+   
 
     {/* Horizontal Scroll for Product Cards */}
     <div className='horizontal-scroll-container'>
@@ -238,46 +239,46 @@ function Home() {
     </div>
 )}
 </div>
+</div>
             {/* Feedback section */}
-            <div ref={feedbackRef} className="container-fluid feedback-section" id="feedback">
-    <h2>Customer Feedback</h2>
+            <div ref={contactRef} className="container-fluid feedback-section" id='#contact'>
+    <h2>Clients' Feedback</h2>
     <div className="row justify-content-center second-feedback">
         <div className="col-9 col-md-5 col-lg-3 feedback-box">
             <div className="feedback-content">
                 <img src={profilepic} alt="Customer 1" className="feedback-image" />
                 <div className="feedback-info">
-                    <h4>John Doe</h4>
-                    <p className="company">Tech Innovators Inc.</p>
+                    
+                    <h4>JS Infra Developers</h4>
                 </div>
             </div>
-            <p className="feedback">"Robotics Co. provided us with exceptional service. Their innovative solutions have transformed our business operations. Highly recommended!"</p>
+            <p className="feedback">"GEAR Gate's automated system makes vehicle entry fast and hassle-free. It's accurate, secure, and works seamlessly. Highly recommended!"</p>
         </div>
         <div className="col-9 col-md-5 col-lg-3 feedback-box">
             <div className="feedback-content">
                 <img src={profilepic} alt="Customer 2" className="feedback-image" />
                 <div className="feedback-info">
-                    <h4>Jane Smith</h4>
-                    <p className="company">Automation Experts Ltd.</p>
+                    
+                    <h4>Green Home Enterprises</h4>
                 </div>
             </div>
-            <p className="feedback">"The team at Robotics Co. is incredibly knowledgeable and supportive. Their robotics solutions are top-notch and have greatly improved our efficiency."</p>
+            <p className="feedback">"AI-PR social media manager has made content posting effortless! It generates engaging images and text daily, keeping our accounts active and boosting engagement. A game-changer for social media management!"</p>
         </div>
         <div className="col-9 col-md-5 col-lg-3 feedback-box">
             <div className="feedback-content">
                 <img src={profilepic} alt="Customer 3" className="feedback-image" />
                 <div className="feedback-info">
-                    <h4>Michael Johnson</h4>
-                    <p className="company">FutureTech Solutions</p>
+                <h4>Crux-AI</h4>
                 </div>
             </div>
-            <p className="feedback">"Working with Robotics Co. has been a game-changer for our company. Their expertise and dedication to customer satisfaction are unparalleled."</p>
+            <p className="feedback">"The GEAR image generator creates stunning, tailored product visuals in seconds, making marketing faster, easier, and more effective"</p>
         </div>
     </div>
 </div>          
 
             
             {/* Contact us section */}
-            <div ref={contactRef} className="contact-us-container" id='#contact'>
+            <div  className="contact-us-container" >
                 <div className="contact-us-box">
                     <div className="contact-us-left">
                         <h2>Get in Touch</h2>

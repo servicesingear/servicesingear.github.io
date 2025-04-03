@@ -1,5 +1,12 @@
 
 /* Video Section */
+.section-height{
+    height: 100vh; 
+    display: flex; /* Enable flexbox for centering content */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; 
+
+}
 .video-section {
     position: relative;
     height: 100vh; /* Occupy the full viewport height */
@@ -603,7 +610,7 @@
 .feedback-section {
     background-color: #f4f9f4; /* Light green background */
     color: green; /* Darker green text */
-    padding: 40px 20px; /* Adjust padding for smaller screens */
+    padding: 75px 20px; /* Adjust padding for smaller screens */
     /* Adjust margin for smaller screens */
     margin-bottom: 50px;
     text-align: center;

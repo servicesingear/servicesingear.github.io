@@ -27,12 +27,20 @@ const products = [
       name: 'Inspection Drone',
       info: 'Perfect for industrial inspections, offering high accuracy and efficiency.',
     },
+   
     {
-      id: 6,
+      id: 5,
       image: 'https://tse3.mm.bing.net/th?id=OIP.liVmy8VRfNkTbTj0GQXpawHaE8&pid=Api&P=0&h=220',
       video: 'https://www.youtube.com/embed/Xa-jbNzeAGM',
-      name: 'Robotic Arm',
+      name: 'GEAR Gate',
       info: 'Efficient and precise, the Robotic Arm excels in manufacturing automation tasks.',
+    },
+    {
+      id: 5,
+      image: 'https://tse3.mm.bing.net/th?id=OIP.liVmy8VRfNkTbTj0GQXpawHaE8&pid=Api&P=0&h=220',
+      video: 'https://www.youtube.com/embed/Xa-jbNzeAGM',
+      name: 'AI-PR',
+      info: 'An intelligent AI that seamlessly curates, schedules, and posts images on social media, optimizing engagement with automation and precision.',
     },
   ];
 
