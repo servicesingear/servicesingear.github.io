@@ -1,9 +1,11 @@
 /* Container Style */
 .job-card {
-  background-color: black ;/* Light green background */
+  background-color: white ;/* Light green background */
   color: #2d6a4f; /* Dark green text */
   /* Soft green border */
   border-radius: 8px;
+  
+
   
   padding: 20px;
  margin-top: 20px;
@@ -62,7 +64,7 @@
 
 .btn-primary{
   background-color: rgb(53, 121, 47); /* Medium green button */
-  color: black;
+  color: white;
   border: none;
   padding: 5px 10px;       
   border-radius: 5px;

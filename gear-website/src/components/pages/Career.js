@@ -3,6 +3,7 @@ import '../styles/Career.css';
 import jobsData from '../data/jobs.json';
 import React, { useState } from 'react';
 import HorizontalJobCard from './JobCard';
+import { Link } from 'react-router-dom';
 
 const Career = () => {
 
@@ -21,7 +22,7 @@ const Career = () => {
         <div className="row">
           {/* Left aligned content */}
           <div className="col-md-10 text-left">
-            <p className="line-one">Home / Career</p>
+            <p className="line-one"><Link to="/" className='Home' >Home</Link>/ Career</p>
             <p className="line-two">Career</p>
             <p className="line-three">Discover Excellence In Your Career</p>
           </div>

@@ -7,6 +7,10 @@ import aboutus from '../assets/images/aboutus.jpg';
 import profilepic from '../assets/images/profilepic.png';
 import banner from '../assets/images/Designer.jpg';
 import Footer from './Footer';
+import CareerSideTag from './SideTag';
+
+
+
 
 
 
@@ -70,6 +74,7 @@ function Home() {
                 scrollToFeedback={() => scrollToSection(feedbackRef)}
                 scrollToContact={() => scrollToSection(contactRef)}
             />
+        <CareerSideTag/>
          <div ref={homeRef} className="container-fluid video-section" id='home' style={{ paddingTop: '60px' }}>
     {/* <div className="video-overlay">
         <h1>Revolutionizing Robotics for the Future</h1>
