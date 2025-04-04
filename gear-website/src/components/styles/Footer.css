@@ -77,6 +77,10 @@
   font-size: 1.5em; /* Size of social media icons */
   transition: color 0.3s;
 }
+.footer-contact{
+  color: green;
+}
+
 
 .footer-social a:hover {
   color:  green;

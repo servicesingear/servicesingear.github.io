@@ -13,6 +13,7 @@ function Footer() {
           <img src={logo} alt="Logo" className="footer-logo" />
           <p className="footer-company-info">Committed to delivering exceptional services and cutting-edge solutions. Driving progress through automation and advanced technology.</p>
         </div>
+        
         <div className="footer-right">
           <div className="footer-links">
             <div className="footer-links-column">
@@ -26,6 +27,7 @@ function Footer() {
               <Link to="/career">Career</Link>
             </div>
           </div>
+          
           <div className="footer-social">
             <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FaFacebook /></a>
             <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><FaTwitter /></a>
@@ -33,6 +35,12 @@ function Footer() {
             <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedin /></a>
           </div>
         </div>
+        <div className="footer-contact">
+            <h4>Contact Us</h4>
+            
+            <p>Phone: +91 9502172867</p>
+            <p>Email: utils.gear@gmail.com</p>
+          </div>
       </div>
       <div className="footer-paragraph">
         {/* <p>Empowering the future through innovation and technological excellence.</p> */}
