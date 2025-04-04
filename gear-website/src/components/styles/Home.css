@@ -150,6 +150,17 @@
     animation: fadeInRight 2s;
 }
 
+@media (max-width: 480px) {
+    .about-section-height{
+        height: 120vh; 
+        display: flex; /* Enable flexbox for centering content */
+        justify-content: center; /* Center content horizontally */
+        align-items: center; 
+    
+    }
+}
+
+
 @keyframes fadeInRight {
     from {
         opacity: 0;

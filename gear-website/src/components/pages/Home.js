@@ -82,7 +82,7 @@ function Home() {
     </video> */}
     <img src={banner} className="video-background" alt="Banner Image" />
 </div>
-            <div ref={aboutRef} className="container-fluid bg-dark text-success py-5 section-height" id='about'>
+            <div ref={aboutRef} className="container-fluid bg-dark text-success py-5 section-height about-section-height" id='about'>
     <div className="container">
         <div className="row align-items-center">
             <div className="col-md-6">
