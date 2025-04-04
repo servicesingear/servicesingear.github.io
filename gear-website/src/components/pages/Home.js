@@ -163,8 +163,9 @@ function Home() {
             </div>
         </div>
     </section>
-            <div ref={productRef} className="container-fluid section-height green-black-theme product-page" id='#product'>
-    {/* Centered Content */}<div className=''>
+    <div  ref={productRef}  id='#product' className='section-height green-black-theme product-page '>
+            <div className="container-fluid">
+    {/* Centered Content */}
     <div className="centered-content">
         <p className="tagline">Our Gear Products</p>
         <h2 className="heading">Innovative Gear Solutions</h2>
