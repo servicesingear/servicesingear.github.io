@@ -28,6 +28,7 @@ function scrollDown(serviceRowsRef) {
 
 function Home() {
     const [activeVideo, setActiveVideo] = useState(null);
+    const scrollRef = useRef(null);
     const serviceRowsRef = useRef(null);
     const homeRef = useRef(null); // Ref for the top video section
     const aboutRef = useRef(null);
@@ -36,6 +37,23 @@ function Home() {
     const feedbackRef = useRef(null);
     const contactRef = useRef(null);
     const [navBackground, setNavBackground] = useState('transparent');
+
+    useEffect(() => {
+        const container = scrollRef.current;
+        let scrollSpeed = 1; // Speed of auto-scroll
+     
+        const autoScroll = () => {
+            if (container.scrollLeft >= container.scrollWidth / 2) {
+                container.scrollLeft = 0; // Reset scroll position
+            } else {
+                container.scrollLeft += scrollSpeed; // Move the scroll
+            }
+        };
+
+        const interval = setInterval(autoScroll, 20); // Adjust interval for smoothness
+
+        return () => clearInterval(interval); // Cleanup the interval
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -178,39 +196,26 @@ function Home() {
             Explore our range of cutting-edge Gear products designed to revolutionize industries and automate your workflows.
         </p>
     </div>
-   
-
-    {/* Horizontal Scroll for Product Cards */}
-    <div className='horizontal-scroll-container'>
-        <div className="horizontal-scroll">
-            {products.map((product) => (
-                <div
-                    key={product.id}
-                    className="product-card"
-                    onClick={() => setActiveVideo(product.video)} // Keep this for potential video popup
-                >
-                    <img src={product.image} alt={product.name} className="product-image" />
-                    <div className="product-info">
-                        <h4>{product.name}</h4>
-                        <p>
-                            {product.info}{' '}
-                            {product.video && ( // Conditionally render a "Watch Video" link
-                                <a href="#" className="watch-video-link" onClick={(e) => {
-                                    e.preventDefault();
-                                    setActiveVideo(product.video);
-                                }}>
-                                    Watch Video
-                                </a>
-                            )}
-                            <a href="#" className="read-more-link">
-                                Read more
-                            </a>
-                        </p>
+    <div ref={scrollRef} className="horizontal-scroll-container">
+            <div className="horizontal-scroll">
+                {products.concat(products).map((product, index) => (
+                    <div
+                        key={`${product.id}-${index}`}
+                        className="product-card"
+                        onClick={() => console.log(product.video)} // Placeholder for video popup
+                    >
+                        <img src={product.image} alt={product.name} className="product-image" />
+                        <div className="product-info">
+                            <h4>{product.name}</h4>
+                            <p>{product.info}</p>
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
-    </div>
+
+  
+  
 
     {/* Enlarged Video Popup
     {activeVideo && (
@@ -225,14 +230,14 @@ function Home() {
         </div>
     )} */}
 
-{activeVideo && (
+{/* {activeVideo && (
     <div className="video-popup">
         <div className="popup-overlay" onClick={() => setActiveVideo(null)}></div>
         <div className="popup-content">
             <button className="close-btn" onClick={() => setActiveVideo(null)}>
                 ✖
             </button>
-            <div className="video-container"> {/* New container for iframe */}
+            <div className="video-container"> 
                 <iframe
                     src={activeVideo} // Assuming activeVideo now holds the iframe URL
                     width="100%"
@@ -244,6 +249,7 @@ function Home() {
         </div>
     </div>
 )}
+ */}
 </div>
 </div>
             {/* Feedback section */}

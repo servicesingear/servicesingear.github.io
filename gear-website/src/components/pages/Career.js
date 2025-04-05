@@ -16,7 +16,7 @@ const Career = () => {
       );
 
   return (
-    <div>
+    <div >
     <section className="career-header-section">
       <div className="container-fluid">
         <div className="row">
@@ -29,8 +29,8 @@ const Career = () => {
         </div>
       </div>
       </section>
-      <section className="career-content-section">
-      <div className="container">
+      <section className="career-content-section ">
+      <div className="container ">
         {/* Centered Header with Animation */}
         <div className="section-header animated fadeInDown">
           <h2>JOIN OUR TEAM</h2>

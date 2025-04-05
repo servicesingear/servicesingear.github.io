@@ -1,4 +1,5 @@
 /* Overall container styling */
+           
 .career-header-section {
     padding: 10px 15px; /* Smaller padding for compact spacing */
     background-color: #212529;
@@ -16,7 +17,7 @@
 }
   .career-content-section {
     padding: 3rem 1rem;
-    background: #f9f9f9;
+    background: rgb(204, 227, 204);
   }
 /* Centered Header */
 .section-header {

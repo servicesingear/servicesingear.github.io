@@ -55,11 +55,13 @@
     .side-tag {
       top: auto; /* Adjust for smaller screens */
       bottom: 20px; /* Position at the bottom */
-      left: 10px; /* Offset from the left */
+      right: 0px; /* Offset from the left */
+    
       /* Circle for mobile view */
       width: 60px; /* Adjust size */
-      height: 60px;
-      padding: 10px;
+      height: 50px;
+      padding: 12px;
+      
     }
   
     .career-link {
@@ -67,15 +69,27 @@
     }
   
     .career-icon {
-      margin: 0; /* Center the icon */
+      margin: 0; 
+     /* Center the icon */
     }
-  
+
+   
     .career-text {
-      display: none; /* Keep text hidden on small screens */
-    }
+        display: none; /* Hidden by default */
+        margin-top: -25px;
+        margin-left: 50px; /* Space between the icon and text */
+        white-space: nowrap; 
+      /* Prevent text wrapping */
+      }
   
     .side-tag:hover {
-      transform: none; /* Disable sliding effect for small screens */
+      transform: none; 
+      width: 120px; /* Disable sliding effect for small screens */
     }
+
+    .side-tag:hover .career-icon {
+        margin-right: 40px; 
+        /* Adds more space when hovered */
+      }
   }
   

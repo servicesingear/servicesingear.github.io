@@ -442,6 +442,10 @@
 
 /* Horizontal Scroll Container */
 .horizontal-scroll-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    position: relative;
+    scroll-behavior: smooth; 
     display: flex;
     justify-content: center;
     padding: 15px 0;
@@ -449,7 +453,7 @@
 }
 
 .horizontal-scroll {
-    display: flex;
+    display: inline-flex;
     overflow-x: auto;
     gap: 15px;
     padding: 10px;
@@ -464,6 +468,7 @@
 
 /* Product Card */
 .product-card {
+    display: inline-block;
     min-width: 280px; /* Adjust minimum width for smaller screens */
     background: #212529; /* Dark card background */
     border-radius: 8px;
