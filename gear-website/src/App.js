@@ -3,6 +3,7 @@ import './App.css';
 import Home from './components/pages/Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Career from './components/pages/Career';
+import JobApplicationForm from './components/pages/JobApllicationForm';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/career" element={<Career />} />
         {/* You can add more routes here */}
+        <Route path="/career/jobapplication" element={<JobApplicationForm /> } />
       </Routes>
    
     </div>

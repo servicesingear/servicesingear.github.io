@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/JobCard.css'; // CSS file for styling
 import 'bootstrap/dist/css/bootstrap.min.css'; // Include Bootstrap for responsiveness
+import { Link } from 'react-router-dom';
 
 const JobCard = ({ job }) => {
   const googleFormURL = 'https://your-google-form-url.com'; // Replace with your actual URL
@@ -33,9 +34,9 @@ const JobCard = ({ job }) => {
         <div><p className="job-type">{job.jobType} </p></div>
         <div><button
           className="btn-primary"
-          onClick={() => window.open(googleFormURL, '_blank')}
-        >
-          Apply Now
+         
+        ><Link to="/career/jobapplication" className='apply'>
+          Apply Now</Link>
         </button></div>
         
         

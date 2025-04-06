@@ -442,8 +442,7 @@
 
 /* Horizontal Scroll Container */
 .horizontal-scroll-container {
-    overflow-x: auto;
-    white-space: nowrap;
+   
     position: relative;
     scroll-behavior: smooth; 
     display: flex;
@@ -628,6 +627,7 @@
     color: green; /* Darker green text */
     padding: 75px 20px; /* Adjust padding for smaller screens */
     /* Adjust margin for smaller screens */
+    
     margin-bottom: 50px;
     text-align: center;
     border-radius: 8px; /* Optional: Add rounded corners */
@@ -764,7 +764,7 @@
 
 .contact-us-box button {
     background-color: #1E1E1E; /* Dark button */
-    border: 2px solid #1E1E1E; /* Dark border */
+    /* Dark border */
     padding: 12px 25px; /* Slightly larger button */
     color: green; /* Bright green text on button */
     border-radius: 5px; /* Less rounded for a modern look */
@@ -776,7 +776,7 @@
 .contact-us-box button:hover {
     background-color: green; /* Bright green background on hover */
     color: #1E1E1E; /* Dark text on hover */
-    border-color: green; /* Green border on hover */
+     /* Green border on hover */
 }
 
 
@@ -807,3 +807,4 @@
         padding: 10px 20px;
     }
 }
+

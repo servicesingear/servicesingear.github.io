@@ -8,6 +8,7 @@ import profilepic from '../assets/images/profilepic.png';
 import banner from '../assets/images/Designer.jpg';
 import Footer from './Footer';
 import CareerSideTag from './SideTag';
+import ContactUs from './ContactUs';
 
 
 
@@ -27,6 +28,17 @@ function scrollDown(serviceRowsRef) {
 }
 
 function Home() {
+
+    const [showPopup, setShowPopup] = useState(false);
+
+    // Open and Close Popup
+    const openPopup = () => {
+      setShowPopup(true);
+    };
+  
+    const closePopup = () => {
+      setShowPopup(false);
+    };
     const [activeVideo, setActiveVideo] = useState(null);
     const scrollRef = useRef(null);
     const serviceRowsRef = useRef(null);
@@ -207,7 +219,19 @@ function Home() {
                         <img src={product.image} alt={product.name} className="product-image" />
                         <div className="product-info">
                             <h4>{product.name}</h4>
-                            <p>{product.info}</p>
+                            <p>{product.info}{' '}
+                            {/* {product.video && ( // Conditionally render a "Watch Video" link
+                                <a href="#" className="watch-video-link" onClick={(e) => {
+                                    e.preventDefault();
+                                    setActiveVideo(product.video);
+                                }}>
+                                    Watch Video
+                                </a>
+                            )}
+                            <a href="#" className="read-more-link">
+                                Read more
+                            </a> */}
+                            </p>
                         </div>
                     </div>
                 ))}
@@ -297,7 +321,11 @@ function Home() {
                         <p>Have any questions or inquiries? Reach out to us for more information about our services and offerings.</p>
                     </div>
                     <div className="contact-us-right">
-                        <button onClick={() => window.location.href = '#contact'}>Contact Us</button> {/* Example of in-page link */}
+                    <button className="contact-btn" onClick={openPopup}> 
+                    Contact Us
+      </button>
+
+      {showPopup && <ContactUs closePopup={closePopup} />}{/* Example of in-page link */}
                     </div>
                 </div>
             </div>

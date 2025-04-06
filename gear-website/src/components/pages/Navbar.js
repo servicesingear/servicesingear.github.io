@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Navbar.css';
 import logo from '../assets/images/logo.png';
+import ContactUs from './ContactUs';
 
 function Navbar({ scrollToHome, scrollToAbout, scrollToServices, scrollToProducts, scrollToContact }) {
     const [scrollPosition, setScrollPosition] = useState(0);
     const [isSolid, setIsSolid] = useState(false);
+
+    const [showPopup, setShowPopup] = useState(false);
+
+  const openPopup = () => setShowPopup(true);
+  const closePopup = () => setShowPopup(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -59,7 +65,10 @@ function Navbar({ scrollToHome, scrollToAbout, scrollToServices, scrollToProduct
                                 <button className="nav-link btn btn-link text-white" onClick={scrollToProducts}>Products</button>
                             </li>
                             <li className="nav-item">
-                                <button className="nav-link btn btn-link text-white" onClick={scrollToContact}>Contact Us</button>
+                                <button className="nav-link btn btn-link text-white" onClick={openPopup}>Contact Us</button>
+
+                                   {/* Conditionally render ContactUs Popup */}
+                                 {showPopup && <ContactUs closePopup={closePopup} />}
                             </li>
                         </ul>
                     </div>
