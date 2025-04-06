@@ -16,7 +16,7 @@ const Career = () => {
       );
 
   return (
-    <div >
+    <div className='career-section' >
     <section className="career-header-section">
       <div className="container-fluid">
         <div className="row">
@@ -55,16 +55,23 @@ const Career = () => {
             </span>
           </div>
         </div>
-        <div className="container my-4">
-     
-      <div className="row">
-        {filteredJobs.map((job) => (
-          <div key={job.id} className='col-12 col-md-7 col-lg-5' >
-            <HorizontalJobCard job={job} googleFormURL={googleFormURL} />
-          </div>
-        ))}
-      </div>
-    </div>
+        
+        {/* Display message if no jobs found */}
+        {filteredJobs.length === 0 ? (
+            <div className="no-matches-message">
+              <p>No matching opportunities found. Please try different search criteria.</p>
+            </div>
+          ) : (
+            <div className="container my-4">
+              <div className="row">
+                {filteredJobs.map((job) => (
+                  <div key={job.id} className='col-12 col-md-7 col-lg-5'>
+                    <HorizontalJobCard job={job} googleFormURL={googleFormURL} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
     </section>
        </div>
