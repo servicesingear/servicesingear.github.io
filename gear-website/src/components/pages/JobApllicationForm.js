@@ -33,7 +33,7 @@ const JobApplicationForm = () => {
     e.preventDefault(); // Prevent the default form submission behavior
   
     try {
-      const response = await fetch('http://localhost:5000/apply-job', {
+      const response = await fetch('https://servicesingear-github-io.onrender.com/apply-job', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -23,8 +23,8 @@ function ContactUs({ closePopup }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Simulate email sending with EmailJS (You can replace this with actual backend API calls)
-    sendEmail(formData);
+    // Send form data to the backend API
+    submitFormData(formData);
 
     setMessage('Thank you for contacting us! We will get back to you soon.');
     setSubmitted(true); // Set submission to true, so we show the thank you message
@@ -45,31 +45,25 @@ function ContactUs({ closePopup }) {
     }, 3000);
   };
 
-  // Simulate sending an email (Replace with actual backend or email service)
-  const sendEmail = (formData) => {
-    // You can integrate with services like EmailJS or your backend here
-    const emailData = {
-      service_id: 'your_service_id',
-      template_id: 'your_template_id',
-      user_id: 'your_user_id',
-      template_params: {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        query: formData.query,
-        description: formData.description,
-      },
-    };
+  // Function to submit the form data to the backend API
+  const submitFormData = (formData) => {
+    const backendApiUrl = 'https://servicesingear-github-io.onrender.com/submit'; // Replace with your backend API URL
 
-    // EmailJS example (replace with your configuration)
-    fetch('https://api.emailjs.com/api/v1.0/email/send', {
+    // Send form data to the backend API using fetch
+    fetch(backendApiUrl, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(emailData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
     })
       .then((response) => response.json())
-      .then((result) => console.log('Success:', result))
-      .catch((error) => console.error('Error:', error));
+      .then((result) => {
+        console.log('Form submitted successfully:', result);
+      })
+      .catch((error) => {
+        console.error('Error submitting the form:', error);
+      });
   };
 
   return (
@@ -83,12 +77,12 @@ function ContactUs({ closePopup }) {
           <div className="thank-you-message">
             <h2>Thank you for contacting us!</h2>
             <p>We have received your message and will get back to you soon.</p>
-            <p>A copy of your submission has been sent to your email.</p> 
+            <p>A copy of your submission has been sent to your email.</p>
           </div>
         ) : (
           <form id="contact-form" onSubmit={handleSubmit}>
             <input
-            className='inputfield'
+              className="inputfield"
               type="text"
               id="name"
               value={formData.name}
@@ -97,7 +91,7 @@ function ContactUs({ closePopup }) {
               required
             />
             <input
-            className='inputfield'
+              className="inputfield"
               type="email"
               id="email"
               value={formData.email}
@@ -106,7 +100,7 @@ function ContactUs({ closePopup }) {
               required
             />
             <input
-            className='inputfield'
+              className="inputfield"
               type="tel"
               id="phone"
               value={formData.phone}
@@ -115,7 +109,7 @@ function ContactUs({ closePopup }) {
               required
             />
             <textarea
-            className='inputfield'
+              className="inputfield"
               id="query"
               value={formData.query}
               onChange={handleChange}
@@ -123,7 +117,7 @@ function ContactUs({ closePopup }) {
               required
             />
             <textarea
-            className='inputfield'
+              className="inputfield"
               id="description"
               value={formData.description}
               onChange={handleChange}
