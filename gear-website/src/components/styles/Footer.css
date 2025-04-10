@@ -94,6 +94,12 @@
   text-align: center;
   width: 100%;
 }
+.contactus{
+  text-decoration: none;
+  color: green;
+  background-color: black;
+  border: none;
+}
 
 /* Keyframes for slideUp animation */
 @keyframes slideUp {

@@ -1,11 +1,16 @@
 // src/components/Footer.js
-import React from 'react';
+import React ,{useState} from 'react';
 import { Link } from 'react-router-dom';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa'; // Importing social media icons
 import '../styles/Footer.css';
 import logo from '../assets/images/logo.png';
+import ContactUs from './ContactUs';
 
 function Footer() {
+     const [showPopup, setShowPopup] = useState(false);
+  
+    const openPopup = () => setShowPopup(true);
+    const closePopup = () => setShowPopup(false);
   return (
     <footer className="footer">
       <div className="container-fluid">
@@ -18,20 +23,22 @@ function Footer() {
           <div className="footer-links">
             <div className="footer-links-column">
               <Link to="/">Home</Link>
-              <Link to="/about">About Us</Link>
-              <Link to="/services">Services</Link>
+              <Link to="/">About Us</Link>
+              <Link to="/">Services</Link>
             </div>
             <div className="footer-links-column">
-              <Link to="/products">Products</Link>
-              <Link to="/contact">Contact Us</Link>
+              <Link to="/">Products</Link>
               <Link to="/career">Career</Link>
+              <Link > <button className='contactus' onClick={openPopup} >Contact Us</button></Link>
+              {showPopup && <ContactUs closePopup={closePopup} />}
             </div>
+            
           </div>
           
           <div className="footer-social">
             <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FaFacebook /></a>
             <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><FaTwitter /></a>
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FaInstagram /></a>
+            <a href="https://www.instagram.com/gear_services/#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FaInstagram /></a>
             <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedin /></a>
           </div>
         </div>
