@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import products from '../data/products';
 import Navbar from './Navbar';
 import video1 from '../assets/videos/mainsection.mp4';
-import aboutus from '../assets/images/aboutus.jpg';
+import aboutus from '../assets/images/aboutus.png';
 import profilepic from '../assets/images/profilepic.png';
 import banner from '../assets/images/Designer.jpg';
 import Footer from './Footer';
