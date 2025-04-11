@@ -168,11 +168,18 @@
     }
 }
 
-@media (max-width: 300px) {
+@media (max-width: 458px) {
   
+    .about-section-height{
+      
+        height: 135vh; 
+        display: flex; /* Enable flexbox for centering content */
+        
+    
+    }
     .image-container img{
        
-        margin-top:70px;
+        margin-top:50px;
     }
 }
 
