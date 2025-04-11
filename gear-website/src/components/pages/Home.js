@@ -210,7 +210,7 @@ function Home() {
     </div>
     <div ref={scrollRef} className="horizontal-scroll-container">
             <div className="horizontal-scroll">
-                {products.concat(products).map((product, index) => (
+                {[...products, ...products, ...products].map((product, index) => (
                     <div
                         key={`${product.id}-${index}`}
                         className="product-card"
