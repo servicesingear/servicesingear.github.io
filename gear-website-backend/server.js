@@ -7,6 +7,8 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 const port = 5000;
 
 // Middleware
@@ -22,57 +24,59 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-// **Job Application API**
-app.post('/apply-job', async (req, res) => {
-  const { name, email, phone, resume, jobTitle, experience, skills, coverLetter } = req.body;
+app.post('/apply-job', upload.single('resume'), async (req, res) => {
+  const { name, email, phone, jobTitle, experience, skills, coverLetter } = req.body;
+  const resumeFile = req.file;
 
-  // Prepare email content
+  // HTML Email content for company
   const applicationContent = `
-    <h1>New Job Application</h1>
+    <h2>📥 New Job Application Received</h2>
     <p><strong>Name:</strong> ${name}</p>
     <p><strong>Email:</strong> ${email}</p>
     <p><strong>Phone:</strong> ${phone}</p>
-    <p><strong>Job Title Applying For:</strong> ${jobTitle}</p>
-    <p><strong>Years of Experience:</strong> ${experience}</p>
+    <p><strong>Job Title:</strong> ${jobTitle}</p>
+    <p><strong>Experience:</strong> ${experience} years</p>
     <p><strong>Skills:</strong> ${skills}</p>
-    <p><strong>Cover Letter:</strong> ${coverLetter}</p>
+    <p><strong>Cover Letter:</strong><br/>${coverLetter.replace(/\n/g, '<br/>')}</p>
   `;
 
-  // Email to applicant (Confirmation email)
+  // Email to applicant (Confirmation)
   const applicantMailOptions = {
     from: 'utils.gear@gmail.com',
     to: email,
-    subject: 'Your Job Application Confirmation',
-    text: `Dear ${name},\n\nThank you for applying for the ${jobTitle} position.\n\nWe have received your application and will get back to you shortly.\n\nBest regards,\nCompany Name`
+    subject: `Application Received – ${jobTitle}`,
+    html: `
+      <p>Dear ${name},</p>
+      <p>Thank you for applying for the <strong>${jobTitle}</strong> position at our company.</p>
+      <p>We have received your application and will review your profile shortly. If your experience and skills match our needs, we will contact you for the next steps.</p>
+      <p>Best regards,<br/>Recruitment Team</p>
+    `
   };
 
-  // Email to the company (Company notification)
+  // Email to the company (with resume attachment)
   const companyMailOptions = {
     from: 'sivapriyaadda@gmail.com',
-    to: 'utils.gear@gmail.com', // Company's email
-    subject: `New Job Application for ${jobTitle}`,
-    text: `A new applicant has applied for the ${jobTitle} position.\n\nApplicant Name: ${name}\nApplicant Email: ${email}`
+    to: 'utils.gear@gmail.com',
+    subject: `New Application for ${jobTitle} – ${name}`,
+    html: applicationContent,
+    attachments: resumeFile ? [{
+      filename: resumeFile.originalname,
+      path: resumeFile.path
+    }] : []
   };
 
-  // Send confirmation email to the applicant
-  transporter.sendMail(applicantMailOptions, (error, info) => {
-    if (error) {
-      res.status(500).json({ message: 'Error sending confirmation email'});
-    }
-    console.log('Confirmation email sent to applicant:', info.response);
-  });
+  try {
+    await transporter.sendMail(applicantMailOptions);
+    console.log('Confirmation email sent to applicant');
 
-  // Send application notification to the company
-  transporter.sendMail(companyMailOptions, (error, info) => {
-    if (error) {
-      res.status(500).json({ message: 'Error sending company notification email'});
-    }
-    console.log('Notification email sent to company:', info.response);
-  });
+    await transporter.sendMail(companyMailOptions);
+    console.log('Notification email sent to company');
 
-  // Respond to the frontend with success message
-  res.status(200).json({ message: 'Application submitted successfully!' });
-
+    res.status(200).json({ message: 'Application submitted successfully!' });
+  } catch (err) {
+    console.error('Error sending emails:', err);
+    res.status(500).json({ message: 'Application submission failed. Please try again later.' });
+  }
 });
 
 // Endpoint to handle form submission

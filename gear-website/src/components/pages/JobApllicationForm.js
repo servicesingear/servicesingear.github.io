@@ -30,31 +30,43 @@ const JobApplicationForm = () => {
 
   // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
+    e.preventDefault();
+  
+    const formDataToSend = new FormData();
+  
+    // Append form fields
+    formDataToSend.append('name', formData.name);
+    formDataToSend.append('email', formData.email);
+    formDataToSend.append('phone', formData.phone);
+    formDataToSend.append('jobTitle', formData.jobTitle);
+    formDataToSend.append('experience', formData.experience);
+    formDataToSend.append('skills', formData.skills);
+    formDataToSend.append('coverLetter', formData.coverLetter);
+  
+    // Append resume file (formData.resume should be a File object)
+    if (formData.resume) {
+      formDataToSend.append('resume', formData.resume);
+    }
   
     try {
-      const response = await fetch('https://servicesingear-github-io.onrender.com/apply-job', {
+      const response = await fetch('http://localhost:5000/apply-job', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData), // Make sure `formData` contains the correct data to send to the backend
+        body: formDataToSend, // Don't set Content-Type manually
       });
   
-      const result = await response.json(); // Parse the JSON response from the backend
+      const result = await response.json();
   
       if (response.ok) {
         console.log('Form submitted successfully:', result);
         setSubmitted(true);
-        setFormData({});
-         // Update the state to display a success message (like "Thank you for applying!")
+        setFormData({}); // Reset the form
       } else {
         console.error('Error submitting form:', result);
-        setError('There was an issue submitting your application. Please try again.'); // Set the error state if response is not OK
+        setError('There was an issue submitting your application. Please try again.');
       }
     } catch (err) {
       console.error('Error:', err);
-      setError('An unexpected error occurred. Please try again.'); // Handle unexpected errors
+      setError('An unexpected error occurred. Please try again.');
     }
   };
   
@@ -121,13 +133,14 @@ const JobApplicationForm = () => {
               <div className="form-group">
                 <label htmlFor="resume">Resume (PDF, DOC, DOCX)</label>
                 <input
-                  type="file"
-                  id="resume"
-                  onChange={handleFileChange}
-                  accept=".pdf,.doc,.docx"
-                  required
-                />
+  type="file"
+  name="resume"
+  accept=".pdf,.doc,.docx"
+  onChange={(e) => setFormData({ ...formData, resume: e.target.files[0] })}
+/>
               </div>
+              
+
 
               <div className="form-group">
                 <label htmlFor="jobTitle">Job Title Applying For</label>
