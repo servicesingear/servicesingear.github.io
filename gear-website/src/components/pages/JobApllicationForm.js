@@ -49,7 +49,7 @@ const JobApplicationForm = () => {
     }
   
     try {
-      const response = await fetch('http://localhost:5000/apply-job', {
+      const response = await fetch('https://servicesingear-github-io.onrender.com/apply-job', {
         method: 'POST',
         body: formDataToSend, // Don't set Content-Type manually
       });
