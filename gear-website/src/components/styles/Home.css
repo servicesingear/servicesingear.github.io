@@ -168,6 +168,14 @@
     }
 }
 
+@media (max-width: 300px) {
+  
+    .image-container img{
+       
+        margin-top:70px;
+    }
+}
+
 
 @keyframes fadeInRight {
     from {
