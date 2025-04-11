@@ -134,6 +134,7 @@
     overflow: hidden;
 }
 
+
 .content-container {
     z-index: 2;
     display: flex;
@@ -150,13 +151,20 @@
     animation: fadeInRight 2s;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .about-section-height{
+      
         height: 120vh; 
         display: flex; /* Enable flexbox for centering content */
+        
+    
+    }
+    .image-container{
         justify-content: center; /* Center content horizontally */
         align-items: center; 
-    
+    }
+    .image-container img{
+        width: 350px;
     }
 }
 
