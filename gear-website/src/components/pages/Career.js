@@ -10,8 +10,8 @@ const Career = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const googleFormURL = 'https://forms.gle/JHCSjonKdXZ1HWaY8';
     const filteredJobs = jobsData.filter((job) =>
-        job.jobTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        job.industry.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        job.department.toLowerCase().includes(searchQuery.toLowerCase()) ||
         job.location.toLowerCase().includes(searchQuery.toLowerCase())
       );
 

@@ -1,45 +1,266 @@
 [
-    {
-      "id": 1,
-      "companyLogo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZx21d3SCNIDzRkmgHChXuz3OVb9BxaujIUg&s",
-          "industry": "HR",
-          "jobTitle": "HR Manager",
-          "salary": "Rs.10,000",
-          "location": "Hyderabad",
-          "workModel": "WFH",
-          "jobType": "Intern"
-    },   
-
-    {
-      "id": 2,
-      "companyLogo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZx21d3SCNIDzRkmgHChXuz3OVb9BxaujIUg&s",
-          "industry": "IT",
-          "jobTitle": "Full Stack Engineer",
-          "salary": "Rs.10,000",
-          "location": "Hyderabad",
-          "workModel": "WFH",
-          "jobType": "Intern"
-    }, 
-    {
-      "id": 3,
-      "companyLogo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZx21d3SCNIDzRkmgHChXuz3OVb9BxaujIUg&s",
-          "industry": "IT",
-          "jobTitle": "UI/UX Designer",
-          "salary": "Rs.10,000",
-          "location": "Hyderabad",
-          "workModel": "WFH",
-          "jobType": "Intern"
-    },
-    {
-      "id": 4,
-      "companyLogo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZx21d3SCNIDzRkmgHChXuz3OVb9BxaujIUg&s",
-          "industry": "HR",
-          "jobTitle": "Hiring Manager",
-          "salary": "Rs.10,000",
-          "location": "Hyderabad",
-          "workModel": "WFH",
-          "jobType": "Intern"
-    } 
-
-  ]
-  
+  {
+    "id": 1,
+    "title": "Robotics Engineer – Core robotic system design & integration",
+    "department": "Hardware Engineering",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 2,
+    "title": "Mechanical Engineer – Mechanical structure, actuators, dynamics",
+    "department": "Hardware Engineering",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 3,
+    "title": "Electrical/Electronics Engineer – Circuit design, PCB development",
+    "department": "Hardware Engineering",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 4,
+    "title": "Embedded Systems Engineer – Microcontroller programming, RTOS",
+    "department": "Hardware Engineering",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 5,
+    "title": "AI/ML Engineer – Perception, learning systems, data modeling",
+    "department": "Software Engineering",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 6,
+    "title": "Computer Vision Engineer – Image processing, object detection",
+    "department": "Software Engineering",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 7,
+    "title": "Software Developer – Control systems, interfaces, backend",
+    "department": "Software Engineering",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 8,
+    "title": "ROS Developer – Working with Robot Operating System (ROS)",
+    "department": "Software Engineering",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 9,
+    "title": "Product Manager – Roadmaps, customer feedback, dev priorities",
+    "department": "Product & Design",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 10,
+    "title": "UI/UX Designer – Interface design for any software or control panels",
+    "department": "Product & Design",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 11,
+    "title": "Industrial Designer – Aesthetic and functional hardware design",
+    "department": "Product & Design",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 12,
+    "title": "R&D Lead/Engineer – Cutting-edge solutions, prototyping",
+    "department": "Research & Innovation",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 13,
+    "title": "Sensor Integration Expert – Lidar, ultrasonic, GPS, etc.",
+    "department": "Research & Innovation",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 14,
+    "title": "Data Scientist – Sensor fusion, analytics, model training",
+    "department": "Research & Innovation",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 15,
+    "title": "Manufacturing Engineer – Design for manufacturability, assembly",
+    "department": "Manufacturing & Supply Chain",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 16,
+    "title": "Procurement/Sourcing Manager – Parts & vendor management",
+    "department": "Manufacturing & Supply Chain",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 17,
+    "title": "Supply Chain Manager – Logistics, inventory, distribution",
+    "department": "Manufacturing & Supply Chain",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 18,
+    "title": "Quality Assurance Engineer – Hardware/software testing and compliance",
+    "department": "Manufacturing & Supply Chain",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 19,
+    "title": "Field Service Technician – On-site setup, troubleshooting",
+    "department": "Field & Customer Support",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 20,
+    "title": "Technical Support Specialist – Customer service, remote diagnostics",
+    "department": "Field & Customer Support",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 21,
+    "title": "Documentation Specialist – Manuals, guides, safety docs",
+    "department": "Field & Customer Support",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 22,
+    "title": "Sales Manager – B2B/B2C sales strategy",
+    "department": "Sales, Marketing & Customer Success",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 23,
+    "title": "Marketing Manager – Branding, campaigns, events",
+    "department": "Sales, Marketing & Customer Success",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 24,
+    "title": "Digital Marketer – SEO, social media, ads",
+    "department": "Sales, Marketing & Customer Success",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 25,
+    "title": "Customer Success Manager – Onboarding, retention, feedback",
+    "department": "Sales, Marketing & Customer Success",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 26,
+    "title": "HR Manager – Hiring, culture, compliance",
+    "department": "Operations & Administration",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 27,
+    "title": "Operations Manager – Facility, vendors, workflow optimization",
+    "department": "Operations & Administration",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 28,
+    "title": "Legal Advisor – IP protection, contracts, compliance",
+    "department": "Operations & Administration",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 29,
+    "title": "Finance & Accounts Executive – Billing, payroll, audits",
+    "department": "Operations & Administration",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 30,
+    "title": "Administrative Assistant – Scheduling, communication, support",
+    "department": "Operations & Administration",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 31,
+    "title": "DevOps Engineer – CI/CD pipelines, cloud infrastructure",
+    "department": "IT & Security",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 32,
+    "title": "Cybersecurity Specialist – Protect IP, data, remote devices",
+    "department": "IT & Security",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  },
+  {
+    "id": 33,
+    "title": "IT Support – Internal tech support",
+    "department": "IT & Security",
+    "location": "Hyderabad",
+    "work_model": "WFH",
+    "job_type": "Intern"
+  }
+]

@@ -9,29 +9,29 @@ const JobCard = ({ job }) => {
   return (
     <div className="job-card d-flex flex-wrap flex-md-nowrap align-items-start">
       {/* Left Section - Image */}
-      <div className="job-image">
+      {/* <div className="job-image">
         <img src={job.companyLogo} alt="Job" />
-      </div>
+      </div> */}
 
       {/* Middle Section - Content */}
       <div className="job-content">
-        <p className="job-industry">{job.industry}</p>
-        <p className="job-title">{job.jobTitle}</p>
+        <p className="job-industry">{job.department}</p>
+        <p className="job-title">{job.title}</p>
         <p className="inline-content">
         <span> <i className="fa-solid fa-building"></i>
-          {job.workModel}</span>
+          {job.work_model}</span>
           <span><i className="fa-solid fa-location-dot"></i>
           
            
             {job.location}
           </span>
         </p>
-        <p className="job-salary">{job.salary} /per month</p>
+        {/* <p className="job-salary">{job.salary} /per month</p> */}
       </div>
 
       {/* Right Section - Job Type and Apply Button */}
       <div className="job-action d-flex flex-column justify-content-between">
-        <div><p className="job-type">{job.jobType} </p></div>
+        <div><p className="job-type">{job.job_type} </p></div>
         <div><button
           className="btn-primary"
          
