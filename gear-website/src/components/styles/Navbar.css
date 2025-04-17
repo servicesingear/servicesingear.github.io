@@ -14,12 +14,14 @@
   height: auto;
 }
 
+
 .navbar-nav .nav-item {
   margin-left: 15px;
 }
 
 .navbar-nav .nav-link {
   padding: 8px 15px;
+  font-weight: bolder;
 }
 
 /* Media query for smaller screens */

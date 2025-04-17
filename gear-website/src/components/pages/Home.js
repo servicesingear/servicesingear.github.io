@@ -2,7 +2,7 @@ import '../styles/Home.css';
 import React, { useRef, useState, useEffect } from 'react';
 import products from '../data/products';
 import Navbar from './Navbar';
-import video1 from '../assets/videos/mainsection.mp4';
+import video1 from '../assets/videos/video_gear_front_page.mp4';
 import aboutus from '../assets/images/aboutus.png';
 import profilepic from '../assets/images/profilepic.png';
 import banner from '../assets/images/Designer.jpg';
@@ -111,11 +111,11 @@ function Home() {
         <p>Our startup is at the forefront of innovation, developing cutting-edge robotics solutions to tackle the most challenging automation needs of today and tomorrow.</p>
         <button className="btn btn-primary" onClick={() => scrollToSection(contactRef)}>Contact Us</button>
     </div> */}
-    {/* <video autoPlay muted loop className="video-background">
+    <video autoPlay muted loop className="video-background">
         <source src={video1} type="video/mp4" />
         Your browser does not support the video tag.
-    </video> */}
-    <img src={banner} className="video-background" alt="Banner Image" />
+    </video>
+    {/* <img src={banner} className="video-background" alt="Banner Image" /> */}
 </div>
             <div ref={aboutRef} className="container-fluid bg-dark text-success py-5 section-height about-section-height" id='about'>
     <div className="container">

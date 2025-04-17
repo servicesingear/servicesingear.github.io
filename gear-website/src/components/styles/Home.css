@@ -92,7 +92,7 @@
 /* Media query for smaller screens */
 @media (max-width: 768px) {
     .video-section {
-        height: auto; /* Adjust height for smaller screens */
+        height: 100vh; /* Adjust height for smaller screens */
         padding: 80px 0; /* Add vertical padding */
     }
 
