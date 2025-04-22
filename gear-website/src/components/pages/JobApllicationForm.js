@@ -22,11 +22,7 @@ const JobApplicationForm = () => {
     setFormData({ ...formData, [id]: value });
   };
 
-  // Handle file input (for resume upload)
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setFormData({ ...formData, resume: file });
-  };
+
 
   // Handle form submission
   const handleSubmit = async (e) => {

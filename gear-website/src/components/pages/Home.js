@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 import video1 from '../assets/videos/video_gear_front_page.mp4';
 import aboutus from '../assets/images/aboutus.png';
 import profilepic from '../assets/images/profilepic.png';
-import banner from '../assets/images/Designer.jpg';
+// import banner from '../assets/images/Designer.jpg';
 import Footer from './Footer';
 import CareerSideTag from './SideTag';
 import ContactUs from './ContactUs';
@@ -39,7 +39,7 @@ function Home() {
     const closePopup = () => {
       setShowPopup(false);
     };
-    const [activeVideo, setActiveVideo] = useState(null);
+    // const [activeVideo, setActiveVideo] = useState(null);
     const scrollRef = useRef(null);
     const serviceRowsRef = useRef(null);
     const homeRef = useRef(null); // Ref for the top video section

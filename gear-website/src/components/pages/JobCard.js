@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Include Bootstrap for responsi
 import { Link } from 'react-router-dom';
 
 const JobCard = ({ job }) => {
-  const googleFormURL = 'https://your-google-form-url.com'; // Replace with your actual URL
+ 
 
   return (
     <div className="job-card d-flex flex-wrap flex-md-nowrap align-items-start">

@@ -1,7 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import Home from './components/pages/Home';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {Routes, Route } from 'react-router-dom';
 import Career from './components/pages/Career';
 import JobApplicationForm from './components/pages/JobApllicationForm';
 
