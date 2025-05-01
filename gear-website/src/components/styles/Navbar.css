@@ -24,6 +24,13 @@
   font-weight: bolder;
 }
 
+.Link{
+  text-decoration: none;
+  font-weight: bolder;
+  color: white;
+
+}
+
 /* Media query for smaller screens */
 @media (max-width: 768px) {
   .navbar {

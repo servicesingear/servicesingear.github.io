@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/Navbar.css';
 import logo from '../assets/images/logo.png';
 import ContactUs from './ContactUs';
+import { Link } from 'react-router-dom';
 
 function Navbar({ scrollToHome, scrollToAbout, scrollToServices, scrollToProducts, scrollToContact }) {
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -63,6 +64,9 @@ function Navbar({ scrollToHome, scrollToAbout, scrollToServices, scrollToProduct
                             </li>
                             <li className="nav-item">
                                 <button className="nav-link btn btn-link text-white" onClick={scrollToProducts}>Products</button>
+                            </li>
+                            <li className="nav-item">
+                                <button className="nav-link btn btn-link text-white" ><Link to="/career" className='Link'>Career</Link></button>
                             </li>
                             <li className="nav-item">
                                 <button className="nav-link btn btn-link text-white" onClick={openPopup}>Contact Us</button>
