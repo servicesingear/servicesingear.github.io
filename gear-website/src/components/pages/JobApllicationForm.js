@@ -12,25 +12,23 @@ const JobApplicationForm = () => {
     skills: '',
     coverLetter: ''
   });
-
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
-
-  // Handle input changes
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
-  };
-
-
-
-  // Handle form submission
+  const [loading, setLoading] = useState(false); // NEW: Track loading
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    
+    // Validate resume
+    if (!formData.resume) {
+      setError('Resume is required.');
+      return;
+    }
+  
+    setLoading(true); // NEW: Start loading
   
     const formDataToSend = new FormData();
-  
-    // Append form fields
     formDataToSend.append('name', formData.name);
     formDataToSend.append('email', formData.email);
     formDataToSend.append('phone', formData.phone);
@@ -38,16 +36,12 @@ const JobApplicationForm = () => {
     formDataToSend.append('experience', formData.experience);
     formDataToSend.append('skills', formData.skills);
     formDataToSend.append('coverLetter', formData.coverLetter);
-  
-    // Append resume file (formData.resume should be a File object)
-    if (formData.resume) {
-      formDataToSend.append('resume', formData.resume);
-    }
+    formDataToSend.append('resume', formData.resume);
   
     try {
       const response = await fetch('https://servicesingear-github-io.onrender.com/apply-job', {
         method: 'POST',
-        body: formDataToSend, // Don't set Content-Type manually
+        body: formDataToSend,
       });
   
       const result = await response.json();
@@ -55,7 +49,16 @@ const JobApplicationForm = () => {
       if (response.ok) {
         console.log('Form submitted successfully:', result);
         setSubmitted(true);
-        setFormData({}); // Reset the form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          resume: null,
+          jobTitle: '',
+          experience: '',
+          skills: '',
+          coverLetter: ''
+        });
       } else {
         console.error('Error submitting form:', result);
         setError('There was an issue submitting your application. Please try again.');
@@ -63,9 +66,27 @@ const JobApplicationForm = () => {
     } catch (err) {
       console.error('Error:', err);
       setError('An unexpected error occurred. Please try again.');
+    } finally {
+      setLoading(false); // NEW: End loading
     }
   };
   
+  // Add this above handleSubmit and the return statement
+const handleChange = (e) => {
+  const { id, value } = e.target;
+  setFormData((prevData) => ({
+    ...prevData,
+    [id]: value
+  }));
+};
+if (loading) {
+  return (
+    <div className="spinner-overlay">
+      <div className="fullpage-spinner"></div>
+    </div>
+  );
+}
+
 
   return (
     <div className="job-application-page">
@@ -184,7 +205,11 @@ const JobApplicationForm = () => {
                 ></textarea>
               </div>
 
-              <button type="submit" className="submit-btn">Submit Application</button>
+              <button type="submit" className="submit-btn" disabled={loading}>
+  Submit Application
+</button>
+
+
             </form>
           )}
 
