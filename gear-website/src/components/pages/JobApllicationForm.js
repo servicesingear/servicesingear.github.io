@@ -21,10 +21,10 @@ const JobApplicationForm = () => {
     setError('');
     
     // Validate resume
-    if (!formData.resume) {
-      setError('Resume is required.');
-      return;
-    }
+    // if (!formData.resume) {
+    //   setError('Resume is required.');
+    //   return;
+    // }
   
     setLoading(true); // NEW: Start loading
   
@@ -150,10 +150,12 @@ if (loading) {
               <div className="form-group">
                 <label htmlFor="resume">Resume (PDF, DOC, DOCX)</label>
                 <input
+                
   type="file"
   name="resume"
   accept=".pdf,.doc,.docx"
   onChange={(e) => setFormData({ ...formData, resume: e.target.files[0] })}
+  required
 />
               </div>
               
@@ -213,7 +215,7 @@ if (loading) {
             </form>
           )}
 
-          {error && <p className="error-message">{error}</p>}
+         
         </div>
       </section>
     </div>
