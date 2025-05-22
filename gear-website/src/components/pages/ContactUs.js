@@ -4,14 +4,17 @@ import '../styles/ContactUs.css';
 function ContactUs({ closePopup }) {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
+    workEmail: '',
     phone: '',
+    position: '',
+    company: '',
     query: '',
     description: '',
   });
 
   const [message, setMessage] = useState('');
-  const [submitted, setSubmitted] = useState(false); // Track submission status
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false); // Loading state
 
   // Handle input change
   const handleChange = (e) => {
@@ -22,48 +25,50 @@ function ContactUs({ closePopup }) {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true); // Start loading
 
-    // Send form data to the backend API
-    submitFormData(formData);
+    submitFormData(formData)
+      .then(() => {
+        setMessage('Thank you for contacting us! We will get back to you soon.');
+        setSubmitted(true);
+        setLoading(false);
 
-    setMessage('Thank you for contacting us! We will get back to you soon.');
-    setSubmitted(true); // Set submission to true, so we show the thank you message
+        setFormData({
+          name: '',
+          workEmail: '',
+          phone: '',
+          position: '',
+          company: '',
+          query: '',
+          description: '',
+        });
 
-    // Clear form data
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      query: '',
-      description: '',
-    });
-
-    // Close the popup after 3 seconds
-    setTimeout(() => {
-      closePopup();
-      setMessage('');
-    }, 3000);
-  };
-
-  // Function to submit the form data to the backend API
-  const submitFormData = (formData) => {
-    const backendApiUrl = 'https://servicesingear-github-io.onrender.com/submit'; // Replace with your backend API URL
-
-    // Send form data to the backend API using fetch
-    fetch(backendApiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        console.log('Form submitted successfully:', result);
+        // Close popup after 3 seconds
+        setTimeout(() => {
+          closePopup();
+          setMessage('');
+          setSubmitted(false);
+        }, 3000);
       })
       .catch((error) => {
+        setLoading(false);
+        setMessage('There was an error submitting the form. Please try again.');
         console.error('Error submitting the form:', error);
       });
+  };
+
+  // Updated submitFormData to return a promise
+  const submitFormData = (formData) => {
+    const backendApiUrl = 'https://servicesingear-github-io.onrender.com/submit';
+
+    return fetch(backendApiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    }).then((response) => {
+      if (!response.ok) throw new Error('Network response was not ok');
+      return response.json();
+    });
   };
 
   return (
@@ -73,13 +78,22 @@ function ContactUs({ closePopup }) {
           X
         </button>
         <h2 className="popup-heading">Contact Us</h2>
-        {submitted ? (
+
+        {loading && (
+          <div className="loading-message">
+            <p>Submitting your form, please wait...</p>
+          </div>
+        )}
+
+        {!loading && submitted && (
           <div className="thank-you-message">
             <h2>Thank you for contacting us!</h2>
             <p>We have received your message and will get back to you soon.</p>
-            <p>A copy of your submission has been sent to your email.</p>
+            <p>A copy of your submission has been sent to your work email.</p>
           </div>
-        ) : (
+        )}
+
+        {!loading && !submitted && (
           <form id="contact-form" onSubmit={handleSubmit}>
             <input
               className="inputfield"
@@ -93,10 +107,10 @@ function ContactUs({ closePopup }) {
             <input
               className="inputfield"
               type="email"
-              id="email"
-              value={formData.email}
+              id="workEmail"
+              value={formData.workEmail}
               onChange={handleChange}
-              placeholder="Your Email"
+              placeholder="Your Work Email"
               required
             />
             <input
@@ -106,6 +120,24 @@ function ContactUs({ closePopup }) {
               value={formData.phone}
               onChange={handleChange}
               placeholder="Your Phone Number"
+              required
+            />
+            <input
+              className="inputfield"
+              type="text"
+              id="position"
+              value={formData.position}
+              onChange={handleChange}
+              placeholder="Your Position"
+              required
+            />
+            <input
+              className="inputfield"
+              type="text"
+              id="company"
+              value={formData.company}
+              onChange={handleChange}
+              placeholder="Company Name"
               required
             />
             <textarea
@@ -124,8 +156,14 @@ function ContactUs({ closePopup }) {
               placeholder="Additional Description"
               required
             />
-            <button type="submit" className="submit-btn">Submit</button>
+            <button type="submit" className="submit-btn">
+              Submit
+            </button>
           </form>
+        )}
+
+        {!loading && message && !submitted && (
+          <div className="error-message">{message}</div>
         )}
       </div>
     </div>

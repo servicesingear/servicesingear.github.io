@@ -41,7 +41,8 @@ const products = [
       video: 'https://www.youtube.com/embed/Xa-jbNzeAGM',
       name: 'AI-PR',
       info: 'An intelligent AI that seamlessly curates, schedules, and posts images on social media, optimizing engagement with automation and precision.',
-    },
+    }
+ 
   ];
 
   export default products;
