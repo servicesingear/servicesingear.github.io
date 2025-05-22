@@ -28,35 +28,37 @@ app.post('/apply-job', upload.single('resume'), async (req, res) => {
   const { name, email, phone, jobTitle, experience, skills, coverLetter } = req.body;
   const resumeFile = req.file;
 
-  // HTML Email content for company
+  // Professional Email content for company
   const applicationContent = `
-    <h2>📥 New Job Application Received</h2>
-    <p><strong>Name:</strong> ${name}</p>
+    <h2>New Job Application Received</h2>
+    <p><strong>Applicant Name:</strong> ${name}</p>
     <p><strong>Email:</strong> ${email}</p>
-    <p><strong>Phone:</strong> ${phone}</p>
-    <p><strong>Job Title:</strong> ${jobTitle}</p>
-    <p><strong>Experience:</strong> ${experience} years</p>
+    <p><strong>Phone Number:</strong> ${phone}</p>
+    <p><strong>Position Applied For:</strong> ${jobTitle}</p>
+    <p><strong>Years of Experience:</strong> ${experience}</p>
     <p><strong>Skills:</strong> ${skills}</p>
     <p><strong>Cover Letter:</strong><br/>${coverLetter.replace(/\n/g, '<br/>')}</p>
   `;
 
-  // Email to applicant (Confirmation)
+  // Professional email to applicant (Confirmation)
   const applicantMailOptions = {
     from: 'utils.gear@gmail.com',
     to: email,
-    subject: `Application Received – ${jobTitle}`,
+    subject: `Application Received for ${jobTitle} Position`,
     html: `
       <p>Dear ${name},</p>
-      <p>Thank you for applying for the <strong>${jobTitle}</strong> position at our company.</p>
-      <p>We have received your application and will review your profile shortly. If your experience and skills match our needs, we will contact you for the next steps.</p>
-      <p>Best regards,<br/>Recruitment Team</p>
+      <p>Thank you for submitting your application for the <strong>${jobTitle}</strong> position with our company.</p>
+      <p>We appreciate your interest and the time you have invested in your application. Our recruitment team will carefully review your qualifications and experience.</p>
+      <p>If your profile matches our requirements, we will contact you to discuss the next steps.</p>
+      <p>Thank you once again for considering a career with us.</p>
+      <p>Best regards,<br/>The Recruitment Team</p>
     `
   };
 
   // Email to the company (with resume attachment)
   const companyMailOptions = {
     from: 'sivapriyaadda@gmail.com',
-    to: 'utils.gear@gmail.com',
+    to: 'support@servicesingear.com',
     subject: `New Application for ${jobTitle} – ${name}`,
     html: applicationContent,
     attachments: resumeFile ? [{
@@ -79,38 +81,61 @@ app.post('/apply-job', upload.single('resume'), async (req, res) => {
   }
 });
 
-// Endpoint to handle form submission
-app.post('/submit', async (req, res) => {
-  const { name, email, phone, query, description } = req.body;
 
-  // Prepare email data for the company
+app.post('/submit', async (req, res) => {
+  const { name, workEmail, phone, position, company, query, description } = req.body;
+
+  // Email content for the company
   const mailOptionsToCompany = {
     from: 'sivapriyaadda@gmail.com',
-    to: 'utils.gear@gmail.com',  // Company's email
+    to: 'support@servicesingear.com',  // Company's email
     subject: 'New Contact Form Submission',
-    text: `You have received a new contact form submission.\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nQuery: ${query}\nDescription: ${description}`
+    text: `
+      You have received a new contact form submission.
+
+      Name: ${name}
+      Work Email: ${workEmail}
+      Phone: ${phone}
+      Position: ${position}
+      Company: ${company}
+      Query: ${query}
+      Description: ${description}
+    `
   };
 
-  // Prepare email data for the user
+  // Email content for the user (confirmation)
   const mailOptionsToUser = {
-    from: 'utils.gear@gmail.com',
-    to: email,  // User's email
+    from: 'support@servicesingear.com',
+    to: workEmail,  // User's work email
     subject: 'Thank You for Contacting Us!',
-    text: `Dear ${name},\n\nThank you for reaching out to us. We have received your query and will get back to you soon.\n\nYour submission:\n\nPhone: ${phone}\nQuery: ${query}\nDescription: ${description}`
+    text: `
+      Dear ${name},
+
+      Thank you for reaching out to us. We have received your query and will get back to you soon.
+
+      Your submission details:
+      Phone: ${phone}
+      Position: ${position}
+      Company: ${company}
+      Query: ${query}
+      Description: ${description}
+
+      Best regards,
+      Services In Gear Team
+    `
   };
 
   try {
     // Send email to the company
     await transporter.sendMail(mailOptionsToCompany);
 
-    // Send email to the user
+    // Send confirmation email to the user
     await transporter.sendMail(mailOptionsToUser);
 
-    // Store the submission in an Excel file
-    await storeInExcel({ name, email, phone, query, description });
+    // Store the submission in Excel (make sure your storeInExcel function supports new fields)
+    await storeInExcel({ name, workEmail, phone, position, company, query, description });
 
-    // Respond with success message
-    res.status(200).json({ message: 'Form submitted successfully. We have sent an email to you and the company.' });
+    res.status(200).json({ message: 'Form submitted successfully. Confirmation email sent.' });
   } catch (error) {
     console.error('Error while sending emails or storing data:', error);
     res.status(500).json({ message: 'An error occurred while submitting the form.' });
