@@ -46,7 +46,7 @@ function Footer() {
             <h4>Contact Us</h4>
             
             <p>Phone: +91 9502172867</p>
-            <p>Email: utils.gear@gmail.com</p>
+            <p>Email: support@servicesingear.com</p>
             
           
           <div className="footer-social">

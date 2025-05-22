@@ -42,7 +42,7 @@ app.post('/apply-job', upload.single('resume'), async (req, res) => {
 
   // Professional email to applicant (Confirmation)
   const applicantMailOptions = {
-    from: 'utils.gear@gmail.com',
+    from: 'hr@servicesingear.com',
     to: email,
     subject: `Application Received for ${jobTitle} Position`,
     html: `
@@ -58,7 +58,7 @@ app.post('/apply-job', upload.single('resume'), async (req, res) => {
   // Email to the company (with resume attachment)
   const companyMailOptions = {
     from: 'sivapriyaadda@gmail.com',
-    to: 'support@servicesingear.com',
+    to: 'hr@servicesingear.com',
     subject: `New Application for ${jobTitle} – ${name}`,
     html: applicationContent,
     attachments: resumeFile ? [{
