@@ -31,7 +31,7 @@ const ApplyTraining = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/apply-training", {
+      const response = await fetch("https://servicesingear-github-io.onrender.com/apply-training", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData), // includes phone now
