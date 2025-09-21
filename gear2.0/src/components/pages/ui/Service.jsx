@@ -108,7 +108,7 @@ const Service = () => {
 
 
   return (
-    <div className="bg-black text-green-100 overflow-x-hidden">
+    <div className="bg-black text-green-100">
       <HeroSection
         backgroundImage="/images/service.png"
         headlines={[
