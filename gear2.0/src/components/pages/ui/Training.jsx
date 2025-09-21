@@ -66,7 +66,7 @@ const trainingPrograms = [
 
 const Training = () => {
   return (
-    <div className="bg-black text-green-100">
+    <div className="bg-black text-green-100 font-sans">
       {/* Hero Section */}
       <HeroSection
         backgroundImage="/images/learn.png"
