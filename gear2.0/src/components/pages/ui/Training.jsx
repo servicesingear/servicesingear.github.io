@@ -34,52 +34,46 @@ const slideInRight = {
 const trainingPrograms = [
   {
     title: "Python Programming",
-    description:
-      "Master Python for automation, data science, and backend development.",
+    description: "Master Python for automation, data science, and backend development.",
     icon: "🐍",
   },
   {
     title: "Generative AI",
-    description:
-      "Hands-on learning with LLMs, prompt engineering, and AI-powered apps.",
+    description: "Hands-on learning with LLMs, prompt engineering, and AI-powered apps.",
     icon: "🤖",
   },
   {
     title: "Robotics Engineering",
-    description:
-      "Build and program robotics systems with ROS, sensors, and automation.",
+    description: "Build and program robotics systems with ROS, sensors, and automation.",
     icon: "🦾",
   },
   {
     title: "Cloud & DevOps",
-    description:
-      "Learn Docker, Kubernetes, CI/CD pipelines, and cloud deployments.",
+    description: "Learn Docker, Kubernetes, CI/CD pipelines, and cloud deployments.",
     icon: "☁️",
   },
   {
     title: "Web Development",
-    description:
-      "Become full-stack with React, Node.js, and scalable architecture.",
+    description: "Become full-stack with React, Node.js, and scalable architecture.",
     icon: "💻",
   },
   {
     title: "AI & ML Basics",
-    description:
-      "Kickstart your AI journey with ML algorithms and practical projects.",
+    description: "Kickstart your AI journey with ML algorithms and practical projects.",
     icon: "🧠",
   },
 ];
 
 const Training = () => {
   return (
-    <div className="bg-black text-green-100 font-sans">
+    <div className="bg-black text-green-100 overflow-x-hidden">
       {/* Hero Section */}
       <HeroSection
         backgroundImage="/images/learn.png"
         headlines={[
-          "Real-world training.",
-          "Learn new skills.",
-          "Shape your future.",
+         "Real-world training.",
+"Learn new skills.",
+"Shape your future."
         ]}
         subtext="Join our specialized training programs designed for beginners and professionals to gain hands-on experience in the most in-demand technologies."
       />
@@ -90,7 +84,7 @@ const Training = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false }}
-        className="px-4 sm:px-10 lg:px-20 py-12"
+        className="px-4 sm:px-10 lg:px-20 pt-16 pb-12"
       >
         <motion.h2
           variants={fadeInUp}
@@ -98,7 +92,7 @@ const Training = () => {
         >
           Available Training Programs
         </motion.h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {trainingPrograms.map((program, index) => (
             <motion.div
               key={index}
@@ -126,12 +120,12 @@ const Training = () => {
         variants={slideInLeft}
         transition={{ duration: 0.7 }}
         viewport={{ once: false }}
-        className="px-4 sm:px-10 lg:px-20 py-12"
+        className="px-4 sm:px-10 lg:px-20 pt-0 pb-16"
       >
         <h2 className="text-4xl font-bold text-center mb-12 text-green-400">
           Why Join Our Training?
         </h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-center">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
           {[
             "Hands-on Projects",
             "Expert Mentors",
@@ -156,7 +150,7 @@ const Training = () => {
         variants={fadeInUp}
         transition={{ duration: 1.0 }}
         viewport={{ once: false }}
-        className="px-4 sm:px-10 lg:px-16 py-12 text-green-100"
+        className="px-4 sm:px-10 lg:px-16 pt-0 pb-20 text-green-100"
       >
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           <motion.div variants={slideInLeft} className="space-y-6">
@@ -175,10 +169,7 @@ const Training = () => {
             </Link>
           </motion.div>
 
-          <motion.div
-            variants={slideInRight}
-            className="flex justify-center md:justify-end"
-          >
+          <motion.div variants={slideInRight} className="flex justify-center md:justify-end">
             <img
               src="/images/training.png"
               alt="Training illustration"
