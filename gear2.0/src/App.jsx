@@ -9,6 +9,8 @@ import Navbar from './components/pages/ui/Navbar';
 import Footer from './components/pages/ui/Footer';
 import JobApply from './components/pages/ui/JobApply';
 import ScrollToTop from './components/pages/ui/SrollToTop';
+import ApplyTraining from './components/pages/ui/ApplyTraining';
+import Training from './components/pages/ui/Training';
 
 
 
@@ -33,6 +35,8 @@ if (redirect) {
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/career" element={<Career/>} />
         <Route path="/careers/:id" element={<JobApply/>} />
+        <Route path="/apply-training" element={<ApplyTraining/>} />
+        <Route path="/training" element={<Training/>}/>
 
       </Routes>
       <Footer/>

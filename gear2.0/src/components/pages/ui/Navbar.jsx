@@ -10,6 +10,7 @@ import {
   Package,
   UserRoundCheck,
   Users,
+  GraduationCap,
 } from "lucide-react";
 
 const Navbar = () => {
@@ -39,6 +40,8 @@ const Navbar = () => {
     { name: "Products", path: "/products", icon: <Package size={18} /> },
     { name: "Contact", path: "/contact", icon: <Mail size={18} /> },
     { name: "Career", path: "/career", icon: <UserRoundCheck size={18} /> },
+    { name: "Training", path: "/training", icon: <GraduationCap size={18} /> }, 
+
   ];
 
   return (

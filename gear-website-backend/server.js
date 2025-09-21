@@ -174,3 +174,78 @@ const storeInExcel = async (data) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+
+app.post("/apply-training", async (req, res) => {
+  const { name, email, phone, course, message } = req.body;
+
+  if (!name || !email || !phone || !course) {
+    return res.status(400).json({ message: "All required fields must be filled" });
+  }
+
+  // Email to company
+  const companyMailOptions = {
+    from: "sivapriyaadda@gmail.com",
+    to: "sivapriyaadda@gmail.com", // change to your company training email
+    subject: `New Training Application - ${course} from ${name}`,
+    html: `
+      <h2>New Training Application</h2>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      <p><strong>Training Course:</strong> ${course}</p>
+      <p><strong>Message:</strong><br/>${message ? message.replace(/\n/g, "<br/>") : "N/A"}</p>
+    `,
+  };
+
+  // Confirmation email to applicant
+  const applicantMailOptions = {
+    from: "sivapriyaadda@gmail.com",
+    to: email,
+    subject: `Training Application Received - ${course}`,
+    html: `
+      <p>Dear ${name},</p>
+      <p>Thank you for applying for the <strong>${course}</strong> training program.</p>
+      <p>We have received your application and will get back to you with further details soon.</p>
+      <p>Best regards,<br/>Training Team</p>
+    `,
+  };
+
+  try {
+    // Send emails
+    await transporter.sendMail(companyMailOptions);
+    await transporter.sendMail(applicantMailOptions);
+
+    // Save in Excel
+    await storeInExcelTraining({ name, email, phone, course, message });
+
+    res.status(200).json({ message: "Training application submitted successfully!" });
+  } catch (err) {
+    console.error("❌ Error in training application:", err);
+    res.status(500).json({ message: "Error submitting application. Please try again later." });
+  }
+});
+
+// Excel function
+const storeInExcelTraining = async (data) => {
+  const filePath = path.join(__dirname, "training_applications.xlsx");
+
+  const workbook = new ExcelJS.Workbook();
+  let worksheet;
+
+  if (fs.existsSync(filePath)) {
+    await workbook.xlsx.readFile(filePath);
+    worksheet = workbook.getWorksheet(1);
+  } else {
+    worksheet = workbook.addWorksheet("Training Applications");
+    worksheet.columns = [
+      { header: "Name", key: "name" },
+      { header: "Email", key: "email" },
+      { header: "Phone", key: "phone" },
+      { header: "Course", key: "course" },
+      { header: "Message", key: "message" },
+    ];
+  }
+
+  worksheet.addRow(data);
+  await workbook.xlsx.writeFile(filePath);
+};

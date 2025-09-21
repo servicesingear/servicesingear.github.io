@@ -262,6 +262,78 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Training Programs Section */}
+      <section className="bg-gray-950 text-white py-20">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold text-green-400 mb-12">
+            Apply for Training
+          </h2>
+          <p className="text-gray-300 mb-10 max-w-2xl mx-auto">
+            Want to upskill in cutting-edge technologies? We offer hands-on
+            training programs designed to help you master real-world skills in
+            Python, Generative AI, Robotics, and more.
+          </p>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: "🐍",
+                title: "Python Programming",
+                desc: "Master Python for data analysis, automation, and full-stack projects.",
+              },
+              {
+                icon: "🤖",
+                title: "Generative AI",
+                desc: "Learn to build GenAI apps with LLMs, prompt engineering, and fine-tuning.",
+              },
+              {
+                icon: "🦾",
+                title: "Robotics",
+                desc: "Get hands-on with robotics programming, sensors, and automation systems.",
+              },
+              {
+                icon: "☁️",
+                title: "Cloud & DevOps",
+                desc: "Understand CI/CD pipelines, Docker, Kubernetes, and cloud deployment.",
+              },
+              {
+                icon: "💻",
+                title: "Web Development",
+                desc: "Build scalable websites and apps with React, Node.js, and modern stacks.",
+              },
+              {
+                icon: "🧠",
+                title: "AI & ML Basics",
+                desc: "Start your journey into machine learning with practical projects.",
+              },
+            ].map(({ icon, title, desc }, i) => (
+              <motion.div
+                key={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
+                variants={fadeUpStagger}
+                custom={i + 1}
+                className="bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-green-500 transition duration-300"
+              >
+                <div className="text-4xl mb-4">{icon}</div>
+                <h3 className="text-xl font-semibold mb-2 text-green-400">
+                  {title}
+                </h3>
+                <p className="text-sm text-gray-400 mb-4">{desc}</p>
+                <Link
+                  to="/apply-training"
+                  className="inline-block px-5 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500 transition font-semibold"
+                >
+                  Apply Now
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
       <FAQ />
       <motion.section
         className="relative bg-cover bg-center bg-no-repeat text-white py-20 text-center"
