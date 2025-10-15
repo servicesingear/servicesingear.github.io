@@ -186,7 +186,7 @@ app.post("/apply-training", async (req, res) => {
   const companyMailOptions = {
     from: "sivapriyaadda@gmail.com",
     to: "training@servicesingear.com", // change to your company training email
-    subject: `New Training Application - ${course} from ${name}`,
+    subject: `New Training Application from ${name}`,
     html: `
       <h2>New Training Application</h2>
       <p><strong>Name:</strong> ${name}</p>
