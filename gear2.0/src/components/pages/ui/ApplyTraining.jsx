@@ -15,7 +15,7 @@ const ApplyTraining = () => {
     name: "",
     email: "",
     phone: "", // ✅ added phone
-    course: "",
+    // course: "",
     message: "",
   });
 
@@ -41,7 +41,7 @@ const ApplyTraining = () => {
 
       if (response.ok) {
         setSubmitted(true);
-        setFormData({ name: "", email: "", phone: "", course: "", message: "" });
+        setFormData({ name: "", email: "", phone: "", message: "" });
       } else {
         alert("❌ Error: " + data.message);
       }
@@ -65,8 +65,7 @@ const ApplyTraining = () => {
           Apply for Training
         </h2>
         <p className="text-gray-400 text-center mb-8">
-          Fill in the form below to apply for Python, Generative AI, Robotics,
-          and more training programs.
+          Fill in the form below to apply for Python, Generative AI, training programs.
         </p>
 
         {submitted ? (
@@ -111,7 +110,7 @@ const ApplyTraining = () => {
               />
             </div>
 
-            <div>
+            {/* <div>
               <label className="block text-sm mb-2">Select Course</label>
               <select
                 name="course"
@@ -128,7 +127,7 @@ const ApplyTraining = () => {
                 <option value="Web Development">💻 Web Development</option>
                 <option value="AI & ML Basics">🧠 AI & ML Basics</option>
               </select>
-            </div>
+            </div> */}
 
             <div>
               <label className="block text-sm mb-2">Message (Optional)</label>

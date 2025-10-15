@@ -176,35 +176,34 @@ app.listen(port, () => {
 });
 
 app.post("/apply-training", async (req, res) => {
-  const { name, email, phone, course, message } = req.body;
+  const { name, email, phone, message } = req.body;
 
-  if (!name || !email || !phone || !course) {
+  if (!name || !email || !phone) {
     return res.status(400).json({ message: "All required fields must be filled" });
   }
 
   // Email to company
   const companyMailOptions = {
     from: "sivapriyaadda@gmail.com",
-    to: "sivapriyaadda@gmail.com", // change to your company training email
+    to: "training@servicesingear.com", // change to your company training email
     subject: `New Training Application - ${course} from ${name}`,
     html: `
       <h2>New Training Application</h2>
       <p><strong>Name:</strong> ${name}</p>
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Phone:</strong> ${phone}</p>
-      <p><strong>Training Course:</strong> ${course}</p>
       <p><strong>Message:</strong><br/>${message ? message.replace(/\n/g, "<br/>") : "N/A"}</p>
     `,
   };
 
   // Confirmation email to applicant
   const applicantMailOptions = {
-    from: "sivapriyaadda@gmail.com",
+    from: "training@servicesingear.com",
     to: email,
-    subject: `Training Application Received - ${course}`,
+    subject: `Training Application Received - Python & GenAI`,
     html: `
       <p>Dear ${name},</p>
-      <p>Thank you for applying for the <strong>${course}</strong> training program.</p>
+      <p>Thank you for applying for the <strong>Python & GenAI</strong> training program.</p>
       <p>We have received your application and will get back to you with further details soon.</p>
       <p>Best regards,<br/>Training Team</p>
     `,
@@ -216,7 +215,7 @@ app.post("/apply-training", async (req, res) => {
     await transporter.sendMail(applicantMailOptions);
 
     // Save in Excel
-    await storeInExcelTraining({ name, email, phone, course, message });
+    await storeInExcelTraining({ name, email, phone, message });
 
     res.status(200).json({ message: "Training application submitted successfully!" });
   } catch (err) {
@@ -241,7 +240,7 @@ const storeInExcelTraining = async (data) => {
       { header: "Name", key: "name" },
       { header: "Email", key: "email" },
       { header: "Phone", key: "phone" },
-      { header: "Course", key: "course" },
+      // { header: "Course", key: "course" },
       { header: "Message", key: "message" },
     ];
   }

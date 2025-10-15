@@ -261,8 +261,8 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* Training Programs Section */}
+{/* 
+     
       <section className="bg-gray-950 text-white py-20">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold text-green-400 mb-12">
@@ -331,7 +331,73 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
+
+      
+
+{/* Training Section – Fresh Design */}
+<section className="bg-black text-white py-28">
+  <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+    
+    {/* Left Side: Highlight Box */}
+    <div className="bg-gradient-to-tr from-green-700 to-green-500 rounded-3xl p-10 shadow-2xl flex flex-col justify-center">
+      <h2 className="text-4xl font-bold mb-4">Level Up Your Skills</h2>
+      <p className="text-gray-100 mb-6">
+        We build innovative products — and now you can learn how we do it. Join our **Python + Generative AI** training program and gain hands-on experience with real-world projects.
+      </p>
+      <p className="text-lg font-semibold mb-6 text-white/90">Price: ₹1999/-</p>
+      <div className="flex flex-col sm:flex-row gap-4">
+        <Link
+          to="/apply-training"
+          className="px-6 py-3 bg-black text-green-400 font-semibold rounded-lg hover:bg-white hover:text-black transition text-center"
+        >
+          Apply Now
+        </Link>
+        {/* <Link
+          to="/training"
+          className="px-6 py-3 border border-white text-white rounded-lg hover:bg-white hover:text-black transition text-center"
+        >
+          More Details
+        </Link> */}
+      </div>
+    </div>
+
+    {/* Right Side: Feature Highlights */}
+    <div className="grid grid-cols-1 gap-6">
+      {[
+        {
+          title: "Hands-On Python Projects",
+          desc: "Learn by doing, from coding exercises to complete real-world projects.",
+          icon: "🐍",
+        },
+        {
+          title: "Generative AI Mastery",
+          desc: "Build AI apps, explore prompt engineering, and work with LLMs.",
+          icon: "🤖",
+        },
+        {
+          title: "Expert Mentorship",
+          desc: "Guidance from professionals who build products daily.",
+          icon: "🧑‍💻",
+        },
+      ].map(({ title, desc, icon }, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: i * 0.2, duration: 0.6 }}
+          className="bg-gray-900 rounded-2xl p-6 flex items-start gap-4 shadow-lg hover:shadow-green-500 transition"
+        >
+          <div className="text-4xl">{icon}</div>
+          <div>
+            <h3 className="text-xl font-semibold text-green-400 mb-1">{title}</h3>
+            <p className="text-gray-300 text-sm">{desc}</p>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
 
 
       <FAQ />
