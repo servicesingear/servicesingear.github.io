@@ -5,61 +5,75 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+const multer = require('multer');
 
 const app = express();
-const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors()); // Allow cross-origin requests
+app.use(cors());
 
-// Configure the email transporter (using Gmail in this example)
+// ---------------- Mailjet SMTP Setup ---------------- //
+// Replace these with your Mailjet free account credentials
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'in-v3.mailjet.com',
+  port: 587,
   auth: {
-    user: 'sivapriyaadda@gmail.com',  // Your email address
-    pass: 'pqmc ctud gbwd ytyi'      // Your email app password (create an app password in Google if using Gmail)
+    user: '1177d13ed03ad0f64bf4af98d3054c7a',
+    pass: '11ab576c4639101f276df08299ff15c6'
   }
 });
 
+// ---------------- Helper Functions ---------------- //
+const storeInExcel = async (data, fileName, sheetName, columns) => {
+  const filePath = path.join(__dirname, fileName);
+  const workbook = new ExcelJS.Workbook();
+  let worksheet;
+
+  if (fs.existsSync(filePath)) {
+    await workbook.xlsx.readFile(filePath);
+    worksheet = workbook.getWorksheet(1);
+  } else {
+    worksheet = workbook.addWorksheet(sheetName);
+    worksheet.columns = columns;
+  }
+
+  worksheet.addRow(data);
+  await workbook.xlsx.writeFile(filePath);
+};
+
+// ---------------- Job Application ---------------- //
 app.post('/apply-job', upload.single('resume'), async (req, res) => {
   const { name, email, phone, jobTitle, experience, skills, coverLetter } = req.body;
   const resumeFile = req.file;
 
-  // Professional Email content for company
   const applicationContent = `
-    <h2>New Job Application Received</h2>
-    <p><strong>Applicant Name:</strong> ${name}</p>
+    <h2>New Job Application</h2>
+    <p><strong>Name:</strong> ${name}</p>
     <p><strong>Email:</strong> ${email}</p>
-    <p><strong>Phone Number:</strong> ${phone}</p>
-    <p><strong>Position Applied For:</strong> ${jobTitle}</p>
-    <p><strong>Years of Experience:</strong> ${experience}</p>
+    <p><strong>Phone:</strong> ${phone}</p>
+    <p><strong>Position:</strong> ${jobTitle}</p>
+    <p><strong>Experience:</strong> ${experience}</p>
     <p><strong>Skills:</strong> ${skills}</p>
     <p><strong>Cover Letter:</strong><br/>${coverLetter.replace(/\n/g, '<br/>')}</p>
   `;
 
-  // Professional email to applicant (Confirmation)
   const applicantMailOptions = {
-    from: 'hr@servicesingear.com',
+    from: 'utils.gear@gmail.com',
     to: email,
-    subject: `Application Received for ${jobTitle} Position`,
-    html: `
-      <p>Dear ${name},</p>
-      <p>Thank you for submitting your application for the <strong>${jobTitle}</strong> position with our company.</p>
-      <p>We appreciate your interest and the time you have invested in your application. Our recruitment team will carefully review your qualifications and experience.</p>
-      <p>If your profile matches our requirements, we will contact you to discuss the next steps.</p>
-      <p>Thank you once again for considering a career with us.</p>
-      <p>Best regards,<br/>The Recruitment Team</p>
-    `
+    subject: `Application Received for ${jobTitle}`,
+    html: `<p>Dear ${name},</p>
+           <p>Thank you for applying for the <strong>${jobTitle}</strong> position.</p>
+           <p>We will review your application and contact you soon.</p>
+           <p>Best regards,<br/>HR Team</p>`
   };
 
-  // Email to the company (with resume attachment)
   const companyMailOptions = {
-    from: 'sivapriyaadda@gmail.com',
+    from: 'utils.gear@gmail.com',
     to: 'hr@servicesingear.com',
-    subject: `New Application for ${jobTitle} – ${name}`,
+    subject: `New Job Application – ${name}`,
     html: applicationContent,
     attachments: resumeFile ? [{
       filename: resumeFile.originalname,
@@ -69,10 +83,23 @@ app.post('/apply-job', upload.single('resume'), async (req, res) => {
 
   try {
     await transporter.sendMail(applicantMailOptions);
-    console.log('Confirmation email sent to applicant');
-
     await transporter.sendMail(companyMailOptions);
-    console.log('Notification email sent to company');
+
+    // Store in Excel
+    await storeInExcel(
+      { name, email, phone, jobTitle, experience, skills, coverLetter },
+      'job_applications.xlsx',
+      'Job Applications',
+      [
+        { header: 'Name', key: 'name' },
+        { header: 'Email', key: 'email' },
+        { header: 'Phone', key: 'phone' },
+        { header: 'Position', key: 'jobTitle' },
+        { header: 'Experience', key: 'experience' },
+        { header: 'Skills', key: 'skills' },
+        { header: 'Cover Letter', key: 'coverLetter' },
+      ]
+    );
 
     res.status(200).json({ message: 'Application submitted successfully!' });
   } catch (err) {
@@ -81,20 +108,17 @@ app.post('/apply-job', upload.single('resume'), async (req, res) => {
   }
 });
 
-
+// ---------------- Contact Form ---------------- //
 app.post('/submit', async (req, res) => {
   const { name, workEmail, phone, position, company, query, description } = req.body;
 
-  // Email content for the company
-  const mailOptionsToCompany = {
-    from: 'sivapriyaadda@gmail.com',
-    to: 'support@servicesingear.com',  // Company's email
+  const mailToCompany = {
+    from: 'utils.gear@gmail.com',
+    to: 'support@servicesingear.com',
     subject: 'New Contact Form Submission',
     text: `
-      You have received a new contact form submission.
-
       Name: ${name}
-      Work Email: ${workEmail}
+      Email: ${workEmail}
       Phone: ${phone}
       Position: ${position}
       Company: ${company}
@@ -103,148 +127,92 @@ app.post('/submit', async (req, res) => {
     `
   };
 
-  // Email content for the user (confirmation)
-  const mailOptionsToUser = {
-    from: 'support@servicesingear.com',
-    to: workEmail,  // User's work email
-    subject: 'Thank You for Contacting Us!',
-    text: `
-      Dear ${name},
-
-      Thank you for reaching out to us. We have received your query and will get back to you soon.
-
-      Your submission details:
-      Phone: ${phone}
-      Position: ${position}
-      Company: ${company}
-      Query: ${query}
-      Description: ${description}
-
-      Best regards,
-      Services In Gear Team
-    `
+  const mailToUser = {
+    from: 'utils.gear@gmail.com',
+    to: workEmail,
+    subject: 'Thank You for Contacting Us',
+    text: `Dear ${name},\n\nThank you for reaching out. We have received your query and will respond shortly.\n\nRegards,\nServices In Gear Team`
   };
 
   try {
-    // Send email to the company
-    await transporter.sendMail(mailOptionsToCompany);
+    await transporter.sendMail(mailToCompany);
+    await transporter.sendMail(mailToUser);
 
-    // Send confirmation email to the user
-    await transporter.sendMail(mailOptionsToUser);
+    await storeInExcel(
+      { name, workEmail, phone, position, company, query, description },
+      'contact_submissions.xlsx',
+      'Contact Submissions',
+      [
+        { header: 'Name', key: 'name' },
+        { header: 'Email', key: 'workEmail' },
+        { header: 'Phone', key: 'phone' },
+        { header: 'Position', key: 'position' },
+        { header: 'Company', key: 'company' },
+        { header: 'Query', key: 'query' },
+        { header: 'Description', key: 'description' }
+      ]
+    );
 
-    // Store the submission in Excel (make sure your storeInExcel function supports new fields)
-    await storeInExcel({ name, workEmail, phone, position, company, query, description });
-
-    res.status(200).json({ message: 'Form submitted successfully. Confirmation email sent.' });
-  } catch (error) {
-    console.error('Error while sending emails or storing data:', error);
-    res.status(500).json({ message: 'An error occurred while submitting the form.' });
+    res.status(200).json({ message: 'Form submitted successfully!' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Submission failed.' });
   }
 });
 
-// Function to store form data in Excel
-const storeInExcel = async (data) => {
-  const filePath = path.join(__dirname, 'submissions.xlsx');
-  
-  const workbook = new ExcelJS.Workbook();
-  let worksheet;
-
-  // Check if the Excel file exists, if not create it
-  if (fs.existsSync(filePath)) {
-    await workbook.xlsx.readFile(filePath);
-    worksheet = workbook.getWorksheet(1);
-  } else {
-    worksheet = workbook.addWorksheet('Submissions');
-    worksheet.columns = [
-      { header: 'Name', key: 'name' },
-      { header: 'Email', key: 'email' },
-      { header: 'Phone', key: 'phone' },
-      { header: 'Query', key: 'query' },
-      { header: 'Description', key: 'description' },
-    ];
-  }
-
-  // Add a new row to the sheet
-  worksheet.addRow(data);
-
-  // Write the data to the Excel file
-  await workbook.xlsx.writeFile(filePath);
-};
-
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
-
-app.post("/apply-training", async (req, res) => {
+// ---------------- Training Application ---------------- //
+app.post('/apply-training', async (req, res) => {
   const { name, email, phone, message } = req.body;
 
   if (!name || !email || !phone) {
-    return res.status(400).json({ message: "All required fields must be filled" });
+    return res.status(400).json({ message: 'Name, email, and phone are required.' });
   }
 
-  // Email to company
-  const companyMailOptions = {
-    from: "sivapriyaadda@gmail.com",
-    to: "training@servicesingear.com", // change to your company training email
+  const mailToCompany = {
+    from: 'utils.gear@gmail.com',
+    to: 'training@servicesingear.com',
     subject: `New Training Application from ${name}`,
-    html: `
-      <h2>New Training Application</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Phone:</strong> ${phone}</p>
-      <p><strong>Message:</strong><br/>${message ? message.replace(/\n/g, "<br/>") : "N/A"}</p>
-    `,
+    html: `<h2>New Training Application</h2>
+           <p><strong>Name:</strong> ${name}</p>
+           <p><strong>Email:</strong> ${email}</p>
+           <p><strong>Phone:</strong> ${phone}</p>
+           <p><strong>Message:</strong><br/>${message || 'N/A'}</p>`
   };
 
-  // Confirmation email to applicant
-  const applicantMailOptions = {
-    from: "training@servicesingear.com",
+  const mailToUser = {
+    from: 'utils.gear@gmail.com',
     to: email,
-    subject: `Training Application Received - Python & GenAI`,
-    html: `
-      <p>Dear ${name},</p>
-      <p>Thank you for applying for the <strong>Python & GenAI</strong> training program.</p>
-      <p>We have received your application and will get back to you with further details soon.</p>
-      <p>Best regards,<br/>Training Team</p>
-    `,
+    subject: 'Training Application Received',
+    html: `<p>Dear ${name},</p>
+           <p>Thank you for applying for our Python & Generative AI training program.</p>
+           <p>We will contact you with further details soon.</p>
+           <p>Best regards,<br/>Training Team</p>`
   };
 
   try {
-    // Send emails
-    await transporter.sendMail(companyMailOptions);
-    await transporter.sendMail(applicantMailOptions);
+    await transporter.sendMail(mailToCompany);
+    await transporter.sendMail(mailToUser);
 
-    // Save in Excel
-    await storeInExcelTraining({ name, email, phone, message });
+    await storeInExcel(
+      { name, email, phone, message },
+      'training_applications.xlsx',
+      'Training Applications',
+      [
+        { header: 'Name', key: 'name' },
+        { header: 'Email', key: 'email' },
+        { header: 'Phone', key: 'phone' },
+        { header: 'Message', key: 'message' }
+      ]
+    );
 
-    res.status(200).json({ message: "Training application submitted successfully!" });
+    res.status(200).json({ message: 'Training application submitted successfully!' });
   } catch (err) {
-    console.error("❌ Error in training application:", err);
-    res.status(500).json({ message: "Error submitting application. Please try again later." });
+    console.error(err);
+    res.status(500).json({ message: 'Error submitting training application.' });
   }
 });
 
-// Excel function
-const storeInExcelTraining = async (data) => {
-  const filePath = path.join(__dirname, "training_applications.xlsx");
-
-  const workbook = new ExcelJS.Workbook();
-  let worksheet;
-
-  if (fs.existsSync(filePath)) {
-    await workbook.xlsx.readFile(filePath);
-    worksheet = workbook.getWorksheet(1);
-  } else {
-    worksheet = workbook.addWorksheet("Training Applications");
-    worksheet.columns = [
-      { header: "Name", key: "name" },
-      { header: "Email", key: "email" },
-      { header: "Phone", key: "phone" },
-      // { header: "Course", key: "course" },
-      { header: "Message", key: "message" },
-    ];
-  }
-
-  worksheet.addRow(data);
-  await workbook.xlsx.writeFile(filePath);
-};
+// ---------------- Start Server ---------------- //
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});

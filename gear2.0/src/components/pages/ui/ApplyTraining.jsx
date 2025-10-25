@@ -68,11 +68,19 @@ const ApplyTraining = () => {
           Fill in the form below to apply for Python, Generative AI, training programs.
         </p>
 
-        {submitted ? (
-          <div className="text-center text-green-400 font-semibold">
-            ✅ Thank you! Your application has been submitted.
+               {submitted ? (
+          <div className="text-center space-y-4">
+            <div className="text-green-400 font-semibold">
+              ✅ Thank you! Your application has been submitted.
+            </div>
+            <button
+              onClick={handleGoBack}
+              className="px-6 py-2 mt-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-semibold transition"
+            >
+              Go Back
+            </button>
           </div>
-        ) : (
+        )  : (
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-sm mb-2">Full Name</label>
