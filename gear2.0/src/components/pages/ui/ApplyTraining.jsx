@@ -10,6 +10,7 @@ const fadeIn = {
   }),
 };
 
+
 const ApplyTraining = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -22,9 +23,12 @@ const ApplyTraining = () => {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,7 +56,9 @@ const ApplyTraining = () => {
       setLoading(false);
     }
   };
-
+ const handleGoBack = () => {
+    setSubmitted(false); // Reset form to show input fields again
+  };
   return (
     <div className="bg-black text-white min-h-screen flex items-center justify-center px-6 py-20">
       <motion.div
@@ -68,7 +74,7 @@ const ApplyTraining = () => {
           Fill in the form below to apply for Python, Generative AI, training programs.
         </p>
 
-               {submitted ? (
+        {submitted ? (
           <div className="text-center space-y-4">
             <div className="text-green-400 font-semibold">
               ✅ Thank you! Your application has been submitted.
@@ -80,7 +86,7 @@ const ApplyTraining = () => {
               Go Back
             </button>
           </div>
-        )  : (
+        ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-sm mb-2">Full Name</label>

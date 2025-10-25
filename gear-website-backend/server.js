@@ -19,7 +19,8 @@ app.use(cors());
 // Replace these with your Mailjet free account credentials
 const transporter = nodemailer.createTransport({
   host: 'in-v3.mailjet.com',
-  port: 587,
+  port: 465,
+  secure: true,
   auth: {
     user: '1177d13ed03ad0f64bf4af98d3054c7a',
     pass: '11ab576c4639101f276df08299ff15c6'
